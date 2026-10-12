@@ -152,7 +152,7 @@
         </a>
         <nav class="desktop-nav">
             <div class="home-dropdown" id="home-dropdown">
-                <button class="home-pill-btn" onclick="toggleDropdown()">Home <i class="fas fa-chevron-up" id="dropdown-chevron" style="font-size:.75rem"></i></button>
+                <button class="home-pill-btn" onclick="toggleDropdown()">Home <i class="fas fa-chevron-down" id="dropdown-chevron" style="font-size:.75rem"></i></button>
                 <div class="dropdown-menu" id="dropdown-menu">
                     <a href="index.html" class="dropdown-item">Home 1</a>
                     <a href="home2.html" class="dropdown-item">Home 2</a>
@@ -668,8 +668,8 @@
 
 <script>
     let cartTotal=0,cartCount=0;
-    function toggleDropdown(){const dd=document.getElementById('home-dropdown');const ch=document.getElementById('dropdown-chevron');dd.classList.toggle('active');if(ch)ch.className=dd.classList.contains('active')?'fas fa-chevron-down':'fas fa-chevron-up';}
-    document.addEventListener('click',function(e){const dd=document.getElementById('home-dropdown');if(dd&&!dd.contains(e.target)){dd.classList.remove('active');const ch=document.getElementById('dropdown-chevron');if(ch)ch.className='fas fa-chevron-up';}});
+    function toggleDropdown(){const dd=document.getElementById('home-dropdown');if(dd){dd.classList.toggle('active');const btn=dd.querySelector('.home-pill-btn');if(btn)btn.setAttribute('aria-expanded',dd.classList.contains('active')?'true':'false');}}
+    document.addEventListener('click',function(e){const dd=document.getElementById('home-dropdown');if(dd&&!dd.contains(e.target)){dd.classList.remove('active');const btn=dd.querySelector('.home-pill-btn');if(btn)btn.setAttribute('aria-expanded','false');}});
     const drawer=document.getElementById('mobile-drawer'),backdrop=document.getElementById('mobile-backdrop');
     if(document.getElementById('open-drawer'))document.getElementById('open-drawer').onclick=()=>{drawer.classList.add('active');backdrop.classList.add('active');};
     if(document.getElementById('close-drawer'))document.getElementById('close-drawer').onclick=()=>{drawer.classList.remove('active');backdrop.classList.remove('active');};

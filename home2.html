@@ -417,7 +417,7 @@
         <nav class="desktop-nav">
             <div class="home-dropdown" id="home-dropdown">
                 <button class="home-pill-btn active" onclick="toggleDropdown()" aria-haspopup="true" aria-expanded="false">
-                    Home <i class="fas fa-chevron-up" id="dropdown-chevron" style="font-size: 0.75rem;"></i>
+                    Home <i class="fas fa-chevron-down" id="dropdown-chevron" style="font-size: 0.75rem;"></i>
                 </button>
                 <div class="dropdown-menu" id="dropdown-menu">
                     <a href="index.html" class="dropdown-item">Home 1</a>
@@ -818,16 +818,18 @@
 
     function toggleDropdown() {
         const dd = document.getElementById('home-dropdown');
-        const chevron = document.getElementById('dropdown-chevron');
-        dd.classList.toggle('active');
-        if (chevron) chevron.className = dd.classList.contains('active') ? 'fas fa-chevron-down' : 'fas fa-chevron-up';
+        if (dd) {
+            dd.classList.toggle('active');
+            const btn = dd.querySelector('.home-pill-btn');
+            if (btn) btn.setAttribute('aria-expanded', dd.classList.contains('active') ? 'true' : 'false');
+        }
     }
     document.addEventListener('click', function(e) {
         const dd = document.getElementById('home-dropdown');
         if (dd && !dd.contains(e.target)) {
             dd.classList.remove('active');
-            const chevron = document.getElementById('dropdown-chevron');
-            if (chevron) chevron.className = 'fas fa-chevron-up';
+            const btn = dd ? dd.querySelector('.home-pill-btn') : null;
+            if (btn) btn.setAttribute('aria-expanded', 'false');
         }
     });
 
