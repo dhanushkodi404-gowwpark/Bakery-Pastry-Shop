@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FlourHouse Daily Bakes Menu – Artisan sourdoughs, French viennoiserie, celebration cakes, and pastries baked fresh every morning.">
+    <title>FLOURHOUSE | Products – Daily Bakes Menu</title>
+    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥐</text></svg>" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* PRODUCT PAGE UNIQUE STYLES */
+        .menu-hero {
+            padding: 5.5rem 0 4.5rem;
+            background: linear-gradient(180deg, rgba(36, 20, 14, 0.74) 0%, rgba(36, 20, 14, 0.86) 100%),
+                        url('https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1600&auto=format&fit=crop') center 35% / cover no-repeat;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+        }
+        .menu-hero .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.16);
+            color: #fff;
+            padding: 0.4rem 0.95rem;
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(8px);
+        }
+        .menu-hero h1 {
+            font-size: clamp(1.85rem, 6vw, 3.5rem);
+            letter-spacing: -0.03em;
+            margin-bottom: 1rem;
+            color: #fff !important;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        .menu-hero h1 em {
+            font-style: italic;
+            color: var(--accent-secondary) !important;
+            font-weight: 600;
+        }
+        .menu-hero p {
+            color: rgba(255, 255, 255, 0.92);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        .menu-categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.6rem;
+        }
+        .cat-tab {
+            padding: 0.6rem 1.4rem;
+            border-radius: 50px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            border: 1.5px solid rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.25s;
+            white-space: nowrap;
+        }
+        @media (max-width: 480px) {
+            .cat-tab {
+                padding: 0.45rem 1rem;
+                font-size: 0.75rem;
+            }
+        }
+        .cat-tab:hover {
+            border-color: var(--accent-secondary);
+            color: var(--accent-secondary);
+            background: rgba(255, 255, 255, 0.25);
+        }
+        .cat-tab.active {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+            box-shadow: 0 8px 20px -5px rgba(200, 149, 108, 0.5);
+        }
+        .menu-section{padding:4rem 0;background:var(--bg-main)}
+        .menu-section-alt{padding:4rem 0;background:var(--bg-alt)}
+        .cat-heading{display:flex;align-items:center;gap:1rem;margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid var(--border-subtle)}
+        .cat-heading-icon{width:52px;height:52px;border-radius:14px;background:var(--accent-subtle);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:1.35rem;flex-shrink:0}
+        .cat-heading-text{flex:1}
+        .cat-heading h2{font-size:1.75rem;margin-bottom:.15rem}
+        .cat-heading span{font-size:.85rem;color:var(--text-muted)}
+        .product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+        @media(max-width:900px){.product-grid{grid-template-columns:repeat(2,1fr)}}
+        @media(max-width:560px){.product-grid{grid-template-columns:1fr}}
+        .product-item{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);overflow:hidden;transition:all .3s}
+        .product-item:hover{transform:translateY(-5px);box-shadow:var(--shadow-hover);border-color:var(--accent)}
+        .product-item-img{height:220px;overflow:hidden;position:relative}
+        .product-item-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+        .product-item:hover .product-item-img img{transform:scale(1.08)}
+        .product-tag{position:absolute;top:.85rem;left:.85rem;background:var(--accent);color:#fff;padding:.3rem .7rem;border-radius:50px;font-size:.65rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+        .product-item-body{padding:1.25rem}
+        .product-item-name{font-size:1.05rem;margin-bottom:.35rem}
+        .product-item-desc{font-size:.82rem;color:var(--text-muted);line-height:1.6;margin-bottom:1rem;min-height:3.9em}
+        .product-item-meta{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem}
+        .product-meta-chip{font-size:.68rem;font-weight:700;padding:.25rem .6rem;border-radius:6px;background:var(--accent-subtle);color:var(--accent);letter-spacing:.03em}
+        .product-item-footer{display:flex;align-items:center;justify-content:space-between;padding-top:.85rem;border-top:1px solid var(--border-subtle)}
+        .product-item-price{font-family:'Outfit',sans-serif;font-weight:800;font-size:1.15rem;color:var(--accent)}
+        .product-add-btn{display:inline-flex;align-items:center;gap:.35rem;background:var(--accent);color:#fff;border:none;padding:.5rem .95rem;border-radius:50px;font-weight:700;font-size:.78rem;cursor:pointer;transition:all .2s}
+        .product-add-btn:hover{background:var(--accent-hover);transform:scale(1.05)}
+        .menu-note{padding:3rem 0;background:var(--bg-main)}
+        .menu-note-card{background:linear-gradient(135deg,var(--bg-card) 0%,var(--bg-alt) 100%);border:1.5px solid var(--border-subtle);border-radius:var(--radius-xl);padding:2.5rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.5rem}
+        @media (max-width: 640px) {
+            .menu-note-card {
+                padding: 1.5rem 1.15rem;
+            }
+            .menu-note-card .btn-primary {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        .menu-note-card h3{font-size:1.5rem;margin-bottom:.4rem}
+        .menu-note-card p{color:var(--text-muted);font-size:.95rem;line-height:1.6;max-width:520px}
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar-container">
+    <div class="container navbar-flex">
+        <a href="index.html" class="logo">
+            <div class="logo-badge"><i class="fas fa-bread-slice"></i></div>
+            <div class="logo-text-block">
+                <span class="logo-title">FLOUR<span>HOUSE</span></span>
+                <span class="logo-sub">ARTISAN BAKERY & PASTRY</span>
+            </div>
+        </a>
+        <nav class="desktop-nav">
+            <div class="home-dropdown" id="home-dropdown">
+                <button class="home-pill-btn" onclick="toggleDropdown()">Home <i class="fas fa-chevron-up" id="dropdown-chevron" style="font-size:.75rem"></i></button>
+                <div class="dropdown-menu" id="dropdown-menu">
+                    <a href="index.html" class="dropdown-item">Home 1</a>
+                    <a href="home2.html" class="dropdown-item">Home 2</a>
+                </div>
+            </div>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="product.html" class="nav-link active">Products</a>
+            <a href="custom.html" class="nav-link">Custom Orders</a>
+            <a href="pricing.html" class="nav-link">Pricing</a>
+            <a href="gallery.html" class="nav-link">Gallery</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+        <div class="navbar-right">
+            <button class="circle-btn" id="theme-btn"><i class="fas fa-moon" id="theme-icon"></i></button>
+            <button class="circle-btn" id="rtl-btn"><i class="fas fa-exchange-alt"></i></button>
+            <a href="contact.html" class="visit-store-btn"><i class="fas fa-map-marker-alt"></i> Visit Bakery</a>
+        </div>
+        <button class="mobile-toggle" id="open-drawer"><i class="fas fa-bars"></i></button>
+    </div>
+</header>
+<div class="mobile-backdrop" id="mobile-backdrop"></div>
+<div class="mobile-drawer" id="mobile-drawer">
+    <div class="mobile-menu-header">
+        <div class="logo"><div class="logo-badge"><i class="fas fa-bread-slice"></i></div><div class="logo-text-block"><span class="logo-title">FLOUR<span>HOUSE</span></span><span class="logo-sub">BAKERY & PASTRY</span></div></div>
+        <button id="close-drawer" style="background:none;border:none;font-size:1.5rem;color:var(--text-main);cursor:pointer"><i class="fas fa-times"></i></button>
+    </div>
+    <div style="background:var(--accent-subtle);border:1.5px solid var(--accent);padding:.85rem;border-radius:14px;margin-bottom:1.5rem">
+        <span style="font-size:.75rem;font-weight:800;color:var(--accent);text-transform:uppercase;display:block;margin-bottom:.5rem">Select Homepage:</span>
+        <div style="display:flex;gap:.5rem">
+            <a href="index.html" style="flex:1;text-align:center;background:var(--bg-card);color:var(--text-main);border:1px solid var(--border-subtle);padding:.5rem;border-radius:8px;font-weight:700;font-size:.85rem">Home 1</a>
+            <a href="home2.html" style="flex:1;text-align:center;background:var(--bg-card);color:var(--text-main);border:1px solid var(--border-subtle);padding:.5rem;border-radius:8px;font-weight:700;font-size:.85rem">Home 2</a>
+        </div>
+    </div>
+    <ul class="mobile-links">
+        <li><a href="about.html" class="mobile-link-item" onclick="closeDrawer()">About</a></li>
+        <li><a href="product.html" class="mobile-link-item active" onclick="closeDrawer()">Products</a></li>
+        <li><a href="custom.html" class="mobile-link-item" onclick="closeDrawer()">Custom Orders</a></li>
+        <li><a href="pricing.html" class="mobile-link-item" onclick="closeDrawer()">Pricing</a></li>
+        <li><a href="gallery.html" class="mobile-link-item" onclick="closeDrawer()">Gallery</a></li>
+        <li><a href="contact.html" class="mobile-link-item" onclick="closeDrawer()">Contact</a></li>
+    </ul>
+    <div style="display:flex;flex-direction:column;gap:.75rem;border-top:1px solid var(--border-subtle);padding-top:1.5rem">
+        <button onclick="toggleTheme()" class="btn-secondary" style="width:100%;justify-content:center"><i class="fas fa-adjust"></i> Dark / Light Mode</button>
+        <button onclick="toggleDirection()" class="btn-secondary" style="width:100%;justify-content:center"><i class="fas fa-exchange-alt"></i> Toggle RTL</button>
+        <a href="contact.html" class="visit-store-btn" onclick="closeDrawer()" style="width:100%;justify-content:center"><i class="fas fa-map-marker-alt"></i> Visit Bakery</a>
+    </div>
+</div>
+
+<!-- MENU HERO -->
+<section class="menu-hero">
+    <div class="container">
+        <span class="eyebrow"><i class="fas fa-bread-slice"></i> Baked Fresh Every Morning</span>
+        <h1>The <em>Daily Bakes</em> Menu</h1>
+        <p>Every loaf, pastry, and cake on this menu was mixed, shaped, and baked by hand in our kitchen. Batches are small and run out fast — reserve early for the freshest picks.</p>
+        <div class="menu-categories">
+            <button class="cat-tab active" data-cat="all">All</button>
+            <button class="cat-tab" data-cat="breads">Breads</button>
+            <button class="cat-tab" data-cat="pastries">Pastries</button>
+            <button class="cat-tab" data-cat="cakes">Cakes</button>
+            <button class="cat-tab" data-cat="tarts">Tarts</button>
+        </div>
+    </div>
+</section>
+
+<!-- BREADS -->
+<section class="menu-section" data-category="breads">
+    <div class="container">
+        <div class="cat-heading">
+            <div class="cat-heading-icon"><i class="fas fa-bread-slice"></i></div>
+            <div class="cat-heading-text">
+                <h2>Hearth Breads</h2>
+                <span>Wild fermentation · Stone deck bake · 36-hour cold proof</span>
+            </div>
+        </div>
+        <div class="product-grid">
+            <div class="product-item" data-category="breads">
+                <div class="product-item-img">
+                    <span class="product-tag">Signature</span>
+                    <img src="https://images.unsplash.com/photo-1589367920969-ab8e050bbb04?q=80&w=600&auto=format&fit=crop" alt="Signature Country Sourdough">
+                </div>
+                <div class="product-item-body">
+                    <h3 class="product-item-name">Signature Country Sourdough</h3>
+                    <p class="product-item-desc">Our flagship 36-hour loaf with a blistered crust, honeycomb crumb, and 10-year heritage starter.</p>
+                    <div class="product-item-meta">
+                        <span class="product-meta-chip">85% Hydration</span>
+                        <span class="product-meta-chip">36h Proof</span>
+                    </div>
+                    <div class="product-item-footer">
+                        <span class="product-item-price">$8.50</span>
+                        <button class="product-add-btn" onclick="addToCart('Signature Country Sourdough',8.50)"><i class="fas fa-plus"></i> Add</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" data-category="breads">
+                <div class="product-item-img">
+                    <span class="product-tag">Ancient Grain</span>
+                    <img src="https://images.unsplash.com/photo-1505976378723-9726b54e9bb9?q=80&w=600&auto=format&fit=crop" alt="Einkorn Miche">
+                </div>
+                <div class="product-item-body">
+                    <h3 class="product-item-name">Einkorn Miche</h3>
+                    <p class="product-item-desc">Ancient Einkorn wheat, sunflower seed crust, and a deep nutty crumb. Limited daily batch.</p>
+                    <div class="product-item-meta">
+                        <span class="product-meta-chip">Ancient Grain</span>
+                        <span class="product-meta-chip">Seed Crust</span>
+                    </div>
+                    <div class="product-item-footer">
+                        <span class="product-item-price">$12.00</span>
+                        <button class="product-add-btn" onclick="addToCart('Einkorn Miche',12.00)"><i class="fas fa-plus"></i> Add</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" data-category="breads">
+                <div class="product-item-img">
+                    <span class="product-tag">French</span>
+                    <img src="https://images.unsplash.com/photo-1524351199678-941a58a3df50?q=80&w=600&auto=format&fit=crop" alt="Tradition Baguette">
+                </div>
+                <div class="product-item-body">
+                    <h3 class="product-item-name">Tradition Baguette</h3>
+                    <p class="product-item-desc">Classic French baguette with a shattering crust and airy interior. Baked twice daily.</p>
+                    <div class="product-item-meta">
+                        <span class="product-meta-chip">Poolish</span>
+                        <span class="product-meta-chip">Twice Daily</span>
+                    </div>
+                    <div class="product-item-footer">
+                        <span class="product-item-price">$4.50</span>
+                        <button class="product-add-btn" onclick="addToCart('Tradition Baguette',4.50)"><i class="fas fa-plus"></i> Add</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" data-category="breads">
+                <div class="product-item-img">
+                    <img src="https://images.unsplash.com/photo-1598373182133-52452f7691ef?q=80&w=600&auto=format&fit=crop" alt="Seeded Rye">
+                </div>
+                <div class="product-item-body">
+                    <h3 class="product-item-name">Seeded Rye Boule</h3>
+                    <p class="product-item-desc">Dense, tangy rye with flax, sesame, and sunflower seed crust. Perfect with aged cheese.</p>
+                    <div class="product-item-meta">
+                        <span class="product-meta-chip">60% Rye</span>
+                        <span class="product-meta-chip">Triple Seed</span>
+                    </div>
+                    <div class="product-item-footer">
+                        <span class="product-item-price">$9.50</span>
+                        <button class="product-add-btn" onclick="addToCart('Seeded Rye Boule',9.50)"><i class="fas fa-plus"></i> Add</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" data-category="breads">
+                <div class="product-item-img">
+                    <img src="https://images.unsplash.com/photo-1568254183919-78a4f43a2877?q=80&w=600&auto=format&fit=crop" alt="Olive Rosemary Loaf">
+                </div>
+                <div class="product-item-body">
+                    <h3 class="product-item-name">Olive Rosemary Loaf</h3>
+                    <p class="product-item-desc">Kalamata olives, fresh rosemary, and a golden crust — a Mediterranean favorite.</p>
+                    <div class="product-item-meta">
+                        <span class="product-meta-chip">Kalamata</span>
+                        <span class="product-meta-chip">Fresh Herb</span>
+                    </div>
+                    <div class="product-item-footer">
+                        <span class="product-item-price">$10.00</span>
+                        <button class="product-add-btn" onclick="addToCart('Olive Rosemary Loaf',10.00)"><i class="fas fa-plus"></i> Add</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" data-category="breads">
+                <div class="product-item-img">
+                    <span class="product-tag">Weekend Only</span>
+                    <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?q=80&w=600&auto=format&fit=crop" alt="Walnut Fig Loaf">
+                </div>
+                <div class="product-item-body">
+                    <h3 class="product-item-name">Walnut Fig Loaf</h3>
+                    <p class="product-item-desc">Toasted walnuts and mission figs folded through our country dough. Weekend special.</p>
+                    <div class="product-item-meta">
+                        <span class="product-meta-chip">Mission Figs</span>
+                        <span class="product-meta-chip">Weekend</span>
+                    </div>
+                    <div class="product-item-footer">
+                        <span class="product-item-price">$11.00</span>
+                        <button class="product-add-btn" onclick="addToCart('Walnut Fig Loaf',11.00)"><i class="fas fa-plus"></i> Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PASTRIES -->
+<section class="menu-section-alt" data-category="pastries">
+    <div class="container">
+        <div class="cat-heading">
+            <div class="cat-heading-icon"><svg viewBox="0 0 45 45" width="24" height="24" fill="currentColor"><path d="M44.255,23.819c2.174-3.022-1.078-7.883-4.541-10.223c0.36-1.591-0.064-3.254-1.398-4.801c-2.333-2.707-6.176-3.007-9.498-3.225c-0.053-0.003-0.099,0.004-0.139,0.019c-0.022-0.171-0.053-0.339-0.095-0.503c-0.342-1.325-0.998-1.682-2.264-1.908c-3.08-0.55-7.444-0.077-10.518,0.512c-2.394,0.459-3.345,1.705-3.556,3.302c-0.026-0.026-0.058-0.043-0.101-0.029c-3.501,1.198-6.246,3.443-8.079,6.708c-1.116,1.988-2.345,4.583-1.256,6.627c-2.036,0.755-2.714,5.204-2.801,6.981c-0.096,1.949,0.595,3.413,2.125,4.221c0.002,0.009-0.005,0.016-0.001,0.026c2.039,5.453,8.229,10.337,14.171,10.496c1.894,0.051,3.826-0.598,4.294-2.64c0.226-0.987-0.092-2.033-0.502-2.92c-1.278-2.766-3.134-4.351-3.815-7.546c-0.008-0.039-0.026-0.067-0.042-0.097c0.548-0.748,0.704-1.633,0.253-2.676c1.218-0.315,1.938-1.241,1.74-3.104c0.139,0.073,0.278,0.143,0.424,0.191c0.639,0.451,1.566,0.449,2.222,0.033c0.146,0.077,0.338,0.073,0.453-0.108c0.173-0.272,0.332-0.552,0.501-0.826c0.412,2.077,1.8,2.621,3.604,2.308c-0.589,1.762-0.687,3.464,1.411,4.153c0.494,0.162,1.054,0.187,1.64,0.139c0.566,2.653,0.553,4.829-0.15,7.531c-0.254,0.975-0.749,2.021-0.268,3.028c0.917,1.921,3.53,1.655,5.138,1.011c6.173-2.472,10.321-10.016,11.394-16.223C44.646,24.019,44.453,23.848,44.255,23.819z M1.064,25.198c0.289-1.375,0.702-3.716,1.956-4.564c0.116,0.169,0.244,0.335,0.397,0.495c1.305,1.358,8.492,5.411,12.367,5.119c1.436,4.153-8.652,5.252-10.733,5.158C1.333,31.238,0.419,28.263,1.064,25.198z M18.094,34.802c1.419,2.178,2.101,2.26,0.173,4.649c-1.759,2.178-2.304,2.034-4.789,1.27c-4.852-1.492-8.08-4.858-10.788-8.964c0.224,0.084,0.453,0.164,0.706,0.225c2.129,0.512,9.479-0.107,12.271-2.547C16.134,31.467,16.937,33.026,18.094,34.802z M17.518,22.936c0.495,5.443-8.061,0.884-9.204,0.317c-2.588-1.283-5.356-3.132-4.826-6.406c0.685-4.238,5.206-7.833,8.736-9.672c-0.201,2.089,0.782,4.732,1.482,7.017c0.594,1.939,1.754,6.668,3.942,8.462C17.564,22.708,17.506,22.797,17.518,22.936z M20.835,22.626c-0.025-0.004-0.047-0.017-0.075-0.01c-4.698,1.181-6.684-9.115-7.325-12.086c-0.558-2.587-1.583-4.799,2.09-6.099c1.727-0.611,4.396-0.411,6.242-0.475c2.864-0.1,5.902-1.062,5.861,3.76c-0.01,1.208-0.931,2.829-1.351,3.914C24.791,15.466,22.903,19.079,20.835,22.626z M22.197,21.968c-0.017-0.053-0.05-0.079-0.083-0.104c1.677-2.779,3.149-5.671,4.385-8.677c0.773-1.88,2.225-4.639,2.216-6.974c0.032,0.013,0.064,0.026,0.103,0.029c2.234,0.181,4.454,0.336,6.495,1.308c4.52,2.152,4.486,6.714,0.778,9.737C33.947,19.034,23.968,27.644,22.197,21.968z M25.92,24.537c4.351-1.067,10.696-6.477,12.091-7.938c0.687-0.72,1.188-1.49,1.491-2.287c1.638,1.188,3.002,2.603,3.919,4.447c0.8,1.608,0.846,4.177-0.509,5.583c-0.72,0.747-2.945,0.972-3.902,1.221c-1.778,0.464-3.562,0.907-5.35,1.328C31.817,27.324,24.986,29.73,25.92,24.537z M36.058,37.73c-0.721,0.618-1.49,1.168-2.306,1.648c-1.949,1.43-3.609,0.829-4.981-1.802c-0.085-0.806,0.66-2.115,0.792-2.929c0.246-1.525,0.544-4.455-0.574-5.781c0.019-0.003,0.038-0.004,0.058-0.007c0.087,0.037,0.176,0.027,0.24-0.038c1.374-0.25,2.813-0.794,3.903-1.044c2.675-0.614,5.403-1.18,8.024-1.999c1.168-0.365,2.019-0.869,2.617-1.465C42.74,29.545,40.205,34.275,36.058,37.73z"/></svg></div>
+            <div class="cat-heading-text">
+                <h2>Viennoiserie & Pastries</h2>
+                <span>Hand-laminated · 100% AOP Normandy butter · 27 layers</span>
+            </div>
+        </div>
+        <div class="product-grid">
+            <div class="product-item" data-category="pastries">
+                <div class="product-item-img">
+                    <span class="product-tag">Bestseller</span>
+                    <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?q=80&w=600&auto=format&fit=crop" alt="Beurre Croissant">
+                </div>
+                <div class="product-item-body">
+                    <h3 class="product-item-name">Beurre Croissant</h3>
+                    <p class="product-item-desc">The classic — 27 butter layers, shatteringly crisp outside, honeycomb inside.</p>
+                    <div class="product-item-meta">
+                        <span class="product-meta-chip">27 Layers</span>
+                        <span class="product-meta-chip">AOP Butter</span>
+                    </div>
+                    <div class="product-item-footer">
+                        <span class="product-item-price">$4.25</span>
+                        <button class="product-add-btn" onclick="addToCart('Beurre Croissant',4.25)"><i class="fas fa-plus"></i> Add</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" data-category="pastries">
+                <div class="product-item-img">
+                    <img src="https://images.unsplash.com/photo-1549488344-1f9b8d2bd1f3?q=80&w=600&auto=format&fit=crop" alt="Pain au Chocolat">
+                </div>
+                <div class="product-item-body">
+                    <h3 class="product-item-name">Pain au Chocolat</h3>
+                    <p class="product-item-desc">Two batons of 70% Valrhona chocolate in golden laminated dough.</p>
+                    <div class="product-item-meta">
+                        <span class="product-meta-chip">Valrhona</span>
+                        <span class="product-meta-chip">Double Baton</span>
+                    </div>
+                    <div class="product-item-footer">
+                        <span class="product-item-price">$4.75</span>
+                        <button class="product-add-btn" onclick="addToCart('Pain au Chocolat',4.75)"><i class="fas fa-plus"></i> Add</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" data-category="pastries">
+                <div class="product-item-img">
+                    <span class="product-tag">Fan Favorite</span>
+                    <img src="https://images.unsplash.com/photo-1509365465985-25d11c17e812?q=80&w=600&auto=format&fit=crop" alt="Almond Honey Croissant">
+                </div>
+                <div class="product-item-body">
+                    <h3 class="product-item-name">Almond Honey Croissant</h3>
+                    <p class="product-item-desc">Double-baked with vanilla almond frangipane, toasted flakes, and wildflower honey.</p>
+                    <div class="product-item-meta">
+                        <span class="product-meta-chip">Frangipane</span>
+                        <span class="product-meta-chip">Wildflower Honey</span>
+                    </div>
+                    <div class="product-item-footer">
+                        <span class="product-item-price">$5.25</span>
+                        <button class="product-add-btn" onclick="addToCart('Almond Honey Croissant',5.25)"><i class="fas fa-plus"></i> Add</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" data-category="pastries">
+                <div class="product-item-img">
+                    <img src="https://images.unsplash.com/photo-1612203985729-70726954388c?q=80&w=600&auto=format&fit=crop" alt="Cardamom Knot">
+                </div>
+                <div class="product-item-body">
+                    <h3 class="product-item-name">Cardamom Knot</h3>
+                    <p class="product-item-desc">Scandinavian-style sweet dough braided with fresh-ground cardamom and pearl sugar.</p>
+                    <div class="product-item-meta">
+                        <span class="product-meta-chip">Fresh Cardamom</span>
+                        <span class="product-meta-chip">Pearl Sugar</span>
+                    </div>
+                    <div class="product-item-footer">
+                        <span class="product-item-price">$5.50</span>
+                        <button class="product-add-btn" onclick="addToCart('Cardamom Knot',5.50)"><i class="fas fa-plus"></i> Add</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" data-category="pastries">
+                <div class="product-item-img">
+                    <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?q=80&w=600&auto=format&fit=crop" alt="Kouign Amann">
+                </div>
+                <div class="product-item-body">
+                    <h3 class="product-item-name">Kouign Amann</h3>
+                    <p class="product-item-desc">Caramelized Breton butter pastry with a crackling sugar crust and soft, flaky center.</p>
+                    <div class="product-item-meta">
+                        <span class="product-meta-chip">Breton</span>
+                        <span class="product-meta-chip">Caramelized</span>
+                    </div>
+                    <div class="product-item-footer">
+                        <span class="product-item-price">$5.75</span>
+                        <button class="product-add-btn" onclick="addToCart('Kouign Amann',5.75)"><i class="fas fa-plus"></i> Add</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" data-category="pastries">
+                <div class="product-item-img">
+                    <img src="https://images.unsplash.com/photo-1506084868230-bb9d95c24759?q=80&w=600&auto=format&fit=crop" alt="Cinnamon Roll">
+                </div>
+                <div class="product-item-body">
+                    <h3 class="product-item-name">Hearth Cinnamon Roll</h3>
+                    <p class="product-item-desc">Enriched dough rolled with Ceylon cinnamon sugar, topped with cream cheese glaze.</p>
+                    <div class="product-item-meta">
+                        <span class="product-meta-chip">Ceylon Cinnamon</span>
+                        <span class="product-meta-chip">Cream Cheese</span>
+                    </div>
+                    <div class="product-item-footer">
+                        <span class="product-item-price">$5.00</span>
+                        <button class="product-add-btn" onclick="addToCart('Hearth Cinnamon Roll',5.00)"><i class="fas fa-plus"></i> Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CAKES -->
+<section class="menu-section" data-category="cakes">
+    <div class="container">
+        <div class="cat-heading">
+            <div class="cat-heading-icon"><i class="fas fa-cake-candles"></i></div>
+            <div class="cat-heading-text">
+                <h2>Signature Cakes</h2>
+                <span>Whole cakes · Hand-finished · 48-hour advance notice for custom</span>
+            </div>
+        </div>
+        <div class="product-grid">
+            <div class="product-item" data-category="cakes">
+                <div class="product-item-img">
+                    <span class="product-tag">Bestseller</span>
+                    <img src="https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?q=80&w=600&auto=format&fit=crop" alt="Dark Valrhona Cake">
+                </div>
+                <div class="product-item-body">
+                    <h3 class="product-item-name">Dark Valrhona Cake</h3>
+                    <p class="product-item-desc">70% Guanaja chocolate ganache, raspberry compote, and cocoa nib crunch. Serves 8–10.</p>
+                    <div class="product-item-meta">
+                        <span class="product-meta-chip">Valrhona</span>
+                        <span class="product-meta-chip">Serves 8–10</span>
+                    </div>
+                    <div class="product-item-footer">
+                        <span class="product-item-price">$48.00</span>
+                        <button class="product-add-btn" onclick="addToCart('Dark Valrhona Cake',48.00)"><i class="fas fa-plus"></i> Add</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" data-category="cakes">
+                <div class="product-item-img">
+                    <span class="product-tag">Seasonal</span>
+                    <img src="https://images.unsplash.com/photo-1559553156-2e97137af16f?q=80&w=600&auto=format&fit=crop" alt="Pistachio Rose Cake">
+                </div>
+                <div class="product-item-body">
+                    <h3 class="product-item-name">Pistachio Rose Cake</h3>
+                    <p class="product-item-desc">Bronte pistachio sponge, rosewater cream, and candied petals. Serves 8–10.</p>
+                    <div class="product-item-meta">
+                        <span class="product-meta-chip">Bronte Pistachio</span>
+                        <span class="product-meta-chip">Serves 8–10</span>
+                    </div>
+                    <div class="product-item-footer">
+                        <span class="product-item-price">$52.00</span>
+                        <button class="product-add-btn" onclick="addToCart('Pistachio Rose Cake',52.00)"><i class="fas fa-plus"></i> Add</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" data-category="cakes">
+                <div class="product-item-img">
+                    <img src="https://images.unsplash.com/photo-1519869325930-281384150729?q=80&w=600&auto=format&fit=crop" alt="Lemon Olive Oil Cake">
+                </div>
+                <div class="product-item-body">
+                    <h3 class="product-item-name">Lemon Olive Oil Cake</h3>
+                    <p class="product-item-desc">Sicilian lemon, extra virgin olive oil, and mascarpone cream. Serves 8–10.</p>
+                    <div class="product-item-meta">
+                        <span class="product-meta-chip">Sicilian Lemon</span>
+                        <span class="product-meta-chip">Serves 8–10</span>
+                    </div>
+                    <div class="product-item-footer">
+                        <span class="product-item-price">$46.00</span>
+                        <button class="product-add-btn" onclick="addToCart('Lemon Olive Oil Cake',46.00)"><i class="fas fa-plus"></i> Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TARTS -->
+<section class="menu-section-alt" data-category="tarts">
+    <div class="container">
+        <div class="cat-heading">
+            <div class="cat-heading-icon"><i class="fas fa-cookie"></i></div>
+            <div class="cat-heading-text">
+                <h2>Tarts & Petits Fours</h2>
+                <span>Individual portions · Seasonal fruit · Made fresh daily</span>
+            </div>
+        </div>
+        <div class="product-grid">
+            <div class="product-item" data-category="tarts">
+                <div class="product-item-img">
+                    <img src="https://images.unsplash.com/photo-1514056052883-d017fddd0426?q=80&w=600&auto=format&fit=crop" alt="Seasonal Fruit Tart">
+                </div>
+                <div class="product-item-body">
+                    <h3 class="product-item-name">Seasonal Fruit Tart</h3>
+                    <p class="product-item-desc">Vanilla bean pastry cream, fresh berries, and glossy apricot glaze.</p>
+                    <div class="product-item-meta">
+                        <span class="product-meta-chip">Vanilla Bean</span>
+                        <span class="product-meta-chip">Fresh Fruit</span>
+                    </div>
+                    <div class="product-item-footer">
+                        <span class="product-item-price">$7.25</span>
+                        <button class="product-add-btn" onclick="addToCart('Seasonal Fruit Tart',7.25)"><i class="fas fa-plus"></i> Add</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" data-category="tarts">
+                <div class="product-item-img">
+                    <span class="product-tag">Classic</span>
+                    <img src="https://images.unsplash.com/photo-1519915028121-7d3463d20b13?q=80&w=600&auto=format&fit=crop" alt="Lemon Meringue Tart">
+                </div>
+                <div class="product-item-body">
+                    <h3 class="product-item-name">Lemon Meringue Tart</h3>
+                    <p class="product-item-desc">Sharp lemon curd in a buttery shell, topped with torched Swiss meringue.</p>
+                    <div class="product-item-meta">
+                        <span class="product-meta-chip">Torched Meringue</span>
+                        <span class="product-meta-chip">Sharp Curd</span>
+                    </div>
+                    <div class="product-item-footer">
+                        <span class="product-item-price">$6.75</span>
+                        <button class="product-add-btn" onclick="addToCart('Lemon Meringue Tart',6.75)"><i class="fas fa-plus"></i> Add</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" data-category="tarts">
+                <div class="product-item-img">
+                    <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?q=80&w=600&auto=format&fit=crop" alt="Chocolate Ganache Tart">
+                </div>
+                <div class="product-item-body">
+                    <h3 class="product-item-name">Chocolate Ganache Tart</h3>
+                    <p class="product-item-desc">Silky dark chocolate ganache in a cocoa shortcrust, finished with sea salt.</p>
+                    <div class="product-item-meta">
+                        <span class="product-meta-chip">Silky Ganache</span>
+                        <span class="product-meta-chip">Sea Salt</span>
+                    </div>
+                    <div class="product-item-footer">
+                        <span class="product-item-price">$6.50</span>
+                        <button class="product-add-btn" onclick="addToCart('Chocolate Ganache Tart',6.50)"><i class="fas fa-plus"></i> Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- NOTE -->
+<section class="menu-note">
+    <div class="container">
+        <div class="menu-note-card">
+            <div>
+                <h3>Looking for a Custom Celebration Cake?</h3>
+                <p>From wedding tiers to birthday centerpieces — our pastry chefs design bespoke cakes for every occasion.</p>
+            </div>
+            <a href="custom.html" class="btn-primary">
+                <span>Explore Custom Cakes</span>
+                <div class="btn-icon-capsule"><i class="fas fa-arrow-right"></i></div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <a href="index.html" class="logo" style="margin-bottom:1rem;display:inline-flex">
+                    <div class="logo-badge"><i class="fas fa-bread-slice"></i></div>
+                    <div class="logo-text-block"><span class="logo-title">FLOUR<span>HOUSE</span></span><span class="logo-sub">ARTISAN BAKERY & PASTRY</span></div>
+                </a>
+                <p style="color:var(--text-muted);font-size:.95rem;line-height:1.7;max-width:320px">Handcrafted sourdoughs, French viennoiserie, and celebration cakes baked fresh at dawn every single morning.</p>
+            </div>
+            <div>
+                <h4>Quick Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home 1 (Artisan Hearth)</a></li>
+                    <li><a href="home2.html">Home 2 (Parisian Atelier)</a></li>
+                    <li><a href="about.html">About Our Craft</a></li>
+                    <li><a href="product.html" style="color:var(--accent);font-weight:700">Daily Bakes Menu</a></li>
+                    <li><a href="gallery.html">Photo Gallery</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Specialties</h4>
+                <ul>
+                    <li><a href="product.html">Artisan Breads & Pastries</a></li>
+                    <li><a href="custom.html">Custom Celebration Cakes</a></li>
+                    <li><a href="pricing.html">Weekly Bread Club</a></li>
+                    <li><a href="contact.html">Store Hours & Location</a></li>
+                    <li><a href="contact.html">Inquiries & Bulk Orders</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Join Dawn Gazette</h4>
+                <p style="color:var(--text-muted);font-size:.9rem;margin-bottom:1rem">Receive weekend secret bake releases, seasonal tarts, and sourdough recipe tips.</p>
+                <form onsubmit="handleGazetteSubmit(event)" style="display:flex;gap:.5rem">
+                    <input type="email" placeholder="Your email address" class="form-input" required>
+                    <button type="submit" class="btn-primary" style="padding:.6rem 1rem"><i class="fas fa-arrow-right"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-copyright">© 2026 FLOURHOUSE Artisan Bakery & Pastry Shop. All rights reserved. Handcrafted with passion.</div>
+    </div>
+</footer>
+
+<!-- TRAY + TOAST -->
+<div class="floating-order-tray" id="order-tray">
+    <div style="display:flex;align-items:center;gap:.75rem">
+        <span class="tray-badge-pill" id="tray-count">1 Item</span>
+        <span style="font-weight:700;font-size:.95rem" id="tray-text">Added to Order</span>
+    </div>
+    <span style="font-family:'Outfit',sans-serif;font-size:1.2rem;font-weight:800;color:var(--accent)" id="tray-total">$8.50</span>
+    <a href="contact.html" class="btn-primary" style="padding:.45rem 1.1rem;font-size:.85rem">Checkout</a>
+</div>
+<div class="toast-msg" id="toast-msg">
+    <i class="fas fa-check-circle" style="color:var(--accent);font-size:1.25rem"></i>
+    <span id="toast-text">Item added to your order!</span>
+</div>
+
+<script>
+    let cartTotal=0,cartCount=0;
+    function toggleDropdown(){const dd=document.getElementById('home-dropdown');const ch=document.getElementById('dropdown-chevron');dd.classList.toggle('active');if(ch)ch.className=dd.classList.contains('active')?'fas fa-chevron-down':'fas fa-chevron-up';}
+    document.addEventListener('click',function(e){const dd=document.getElementById('home-dropdown');if(dd&&!dd.contains(e.target)){dd.classList.remove('active');const ch=document.getElementById('dropdown-chevron');if(ch)ch.className='fas fa-chevron-up';}});
+    const drawer=document.getElementById('mobile-drawer'),backdrop=document.getElementById('mobile-backdrop');
+    if(document.getElementById('open-drawer'))document.getElementById('open-drawer').onclick=()=>{drawer.classList.add('active');backdrop.classList.add('active');};
+    if(document.getElementById('close-drawer'))document.getElementById('close-drawer').onclick=()=>{drawer.classList.remove('active');backdrop.classList.remove('active');};
+    if(backdrop)backdrop.onclick=()=>{drawer.classList.remove('active');backdrop.classList.remove('active');};
+    function closeDrawer(){if(drawer)drawer.classList.remove('active');if(backdrop)backdrop.classList.remove('active');}
+    function toggleTheme(){const h=document.documentElement;const n=(h.getAttribute('data-theme')||'light')==='dark'?'light':'dark';h.setAttribute('data-theme',n);localStorage.setItem('fh_theme',n);updateThemeIcon(n);showToast('Switched to '+n.toUpperCase()+' mode');}
+    function updateThemeIcon(t){const i=document.getElementById('theme-icon');if(i)i.className=t==='dark'?'fas fa-sun':'fas fa-moon';}
+    function toggleDirection(){const h=document.documentElement;const n=(h.getAttribute('dir')||'ltr')==='rtl'?'ltr':'rtl';h.setAttribute('dir',n);localStorage.setItem('fh_dir',n);showToast('Direction set to '+n.toUpperCase());}
+    (function(){const t=localStorage.getItem('fh_theme');if(t){document.documentElement.setAttribute('data-theme',t);updateThemeIcon(t);}const d=localStorage.getItem('fh_dir');if(d)document.documentElement.setAttribute('dir',d);})();
+    function showToast(m){const t=document.getElementById('toast-msg'),x=document.getElementById('toast-text');if(x)x.textContent=m;if(t){t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3200);}}
+    function addToCart(title,price){cartCount++;cartTotal+=price;document.getElementById('tray-count').textContent=cartCount+(cartCount===1?' Item':' Items');document.getElementById('tray-text').textContent=title;document.getElementById('tray-total').textContent='$'+cartTotal.toFixed(2);document.getElementById('order-tray').classList.add('show');showToast('Added '+title+' ($'+price.toFixed(2)+')');}
+    function handleGazetteSubmit(e){e.preventDefault();showToast('Welcome to the Dawn Gazette!');e.target.reset();}
+    document.getElementById('theme-btn').onclick=toggleTheme;
+    document.getElementById('rtl-btn').onclick=toggleDirection;
+    // Category filter
+    document.querySelectorAll('.cat-tab').forEach(tab=>{
+        tab.onclick=()=>{
+            document.querySelectorAll('.cat-tab').forEach(t=>t.classList.remove('active'));
+            tab.classList.add('active');
+            const cat=tab.getAttribute('data-cat');
+            document.querySelectorAll('.menu-section,.menu-section-alt').forEach(sec=>{
+                const secCat=sec.getAttribute('data-category');
+                if(cat==='all'||secCat===cat){sec.style.display='';}else{sec.style.display='none';}
+            });
+            if(cat!=='all'){document.querySelectorAll('.cat-tab').forEach(t=>{if(t.getAttribute('data-cat')===cat){t.classList.add('active');}});}
+        };
+    });
+
+    // Image fallback handler
+    document.querySelectorAll('.item-img img').forEach(img => {
+        img.addEventListener('error', function() {
+            this.src = 'https://images.unsplash.com/photo-1557308536-ee471ef2c390?q=80&w=800&auto=format&fit=crop';
+        });
+    });
+</script>
+
+</body>
+</html>

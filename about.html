@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About FlourHouse – Our story, craft philosophy, team of bakers, and the honest ingredients behind every loaf and pastry.">
+    <title>FLOURHOUSE | About Our Craft</title>
+    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥐</text></svg>" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ===== ABOUT PAGE UNIQUE STYLES ===== */
+        .about-hero {
+            padding: 5.5rem 0 4.5rem;
+            background: linear-gradient(180deg, rgba(36, 20, 14, 0.74) 0%, rgba(36, 20, 14, 0.86) 100%),
+                        url('https://images.unsplash.com/photo-1607958996333-41aef7caefaa?q=80&w=1600&auto=format&fit=crop') center 35% / cover no-repeat;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+        }
+        .about-hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.16);
+            color: #fff;
+            padding: 0.4rem 0.95rem;
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1.25rem;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(8px);
+        }
+        .about-hero-title {
+            font-size: clamp(1.85rem, 6vw, 3.75rem);
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            margin-bottom: 1.25rem;
+            color: #fff !important;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        .about-hero-title em {
+            font-style: italic;
+            color: var(--accent-secondary) !important;
+            font-weight: 600;
+        }
+        .about-hero-desc {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.92);
+            max-width: 640px;
+            margin: 0 auto;
+            line-height: 1.75;
+        }
+
+        /* Story Split */
+        .story-split {
+            padding: 5rem 0;
+            background: var(--bg-main);
+        }
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        @media (max-width: 900px) {
+            .story-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+        }
+        .story-visual {
+            position: relative;
+            aspect-ratio: 4/5;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+        }
+        .story-visual img { width: 100%; height: 100%; object-fit: cover; }
+        .story-visual-badge {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            max-width: calc(100% - 3rem);
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 0.85rem 1.15rem;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: var(--shadow-card);
+        }
+        @media (max-width: 500px) {
+            .story-visual-badge {
+                bottom: 1rem;
+                left: 1rem;
+                max-width: calc(100% - 2rem);
+                padding: 0.65rem 0.85rem;
+            }
+        }
+        .story-visual-badge i { font-size: 1.25rem; color: var(--accent); }
+        .story-visual-badge strong { display: block; font-size: 0.9rem; font-family: 'Outfit', sans-serif; }
+        .story-visual-badge span { font-size: 0.75rem; color: var(--text-muted); }
+        .story-content {
+            min-width: 0;
+            width: 100%;
+        }
+        .story-content h2 {
+            font-size: clamp(1.5rem, 5vw, 2.35rem);
+            margin: 1rem 0 1.25rem;
+            letter-spacing: -0.025em;
+            line-height: 1.2;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        .story-content p {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+            line-height: 1.75;
+            margin-bottom: 1.1rem;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        .story-lead {
+            font-size: 1.1rem !important;
+            color: var(--text-main) !important;
+            font-weight: 500;
+        }
+
+        /* Stats Band */
+        .stats-band {
+            padding: 4rem 0;
+            background: var(--bg-alt);
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+        @media (max-width: 700px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+        }
+        @media (max-width: 440px) {
+            .stats-grid {
+                gap: 0.75rem;
+            }
+            .stat-cell {
+                padding: 1rem 0.5rem;
+            }
+        }
+        .stat-cell {
+            text-align: center;
+            padding: 1.5rem 1rem;
+        }
+        .stat-val {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.85rem, 4vw, 3rem);
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+        .stat-lbl {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 0.72rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        /* Values Grid */
+        .values-section {
+            padding: 5rem 0;
+            background: var(--bg-main);
+        }
+        .section-head-center {
+            text-align: center;
+            max-width: 620px;
+            margin: 0 auto 3.5rem;
+        }
+        .section-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--accent-subtle);
+            color: var(--accent);
+            padding: 0.4rem 0.95rem;
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        .section-title-main {
+            font-size: clamp(1.6rem, 5vw, 2.5rem);
+            letter-spacing: -0.025em;
+            margin-bottom: 0.85rem;
+            line-height: 1.2;
+        }
+        .section-desc-main { color: var(--text-muted); font-size: 1rem; line-height: 1.7; }
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.75rem;
+        }
+        @media (max-width: 900px) { .values-grid { grid-template-columns: 1fr; } }
+        .value-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-xl);
+            padding: 2rem 1.75rem;
+            transition: all 0.35s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        @media (max-width: 480px) {
+            .value-card {
+                padding: 1.5rem 1.25rem;
+            }
+        }
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+        .value-card:hover::before { transform: scaleX(1); }
+        .value-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent);
+        }
+        .value-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            background: var(--accent-subtle);
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 1.25rem;
+        }
+        .value-title { font-size: 1.2rem; margin-bottom: 0.65rem; }
+        .value-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; }
+
+        /* Team Section */
+        .team-section {
+            padding: 5rem 0;
+            background: var(--bg-alt);
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.75rem;
+        }
+        @media (max-width: 1024px) { .team-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 560px) { .team-grid { grid-template-columns: 1fr; gap: 1.25rem; } }
+        .team-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            border: 1px solid var(--border-subtle);
+            transition: all 0.35s ease;
+        }
+        .team-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent);
+        }
+        .team-img { height: 260px; overflow: hidden; }
+        .team-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .team-card:hover .team-img img { transform: scale(1.06); }
+        .team-body { padding: 1.5rem 1.35rem; }
+        .team-name { font-size: 1.15rem; margin-bottom: 0.25rem; }
+        .team-role {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+        .team-bio { font-size: 0.85rem; color: var(--text-muted); line-height: 1.65; }
+
+        /* Craft Process Timeline */
+        .craft-section {
+            padding: 5rem 0;
+            background: var(--bg-main);
+        }
+        .craft-timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .craft-step {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 2rem;
+            padding-bottom: 2.5rem;
+            position: relative;
+        }
+        .craft-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 40px;
+            top: 80px;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-subtle);
+        }
+        @media (max-width: 600px) {
+            .craft-step {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                padding-bottom: 2rem;
+            }
+            .craft-step:not(:last-child)::after {
+                display: none;
+            }
+            .craft-step-num {
+                width: 52px;
+                height: 52px;
+                font-size: 1.35rem;
+            }
+        }
+        .craft-step-num {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--accent-subtle);
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            border: 2px solid var(--accent);
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+        .craft-step-body { padding-top: 0.5rem; }
+        .craft-step-time {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        .craft-step-title { font-size: 1.35rem; margin-bottom: 0.65rem; }
+        .craft-step-desc { font-size: 0.92rem; color: var(--text-muted); line-height: 1.7; }
+
+        /* Press / Recognition */
+        .recognition-section {
+            padding: 5rem 0;
+            background: var(--bg-alt);
+        }
+        .recognition-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+        @media (max-width: 900px) { .recognition-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 480px) { .recognition-grid { grid-template-columns: 1fr; gap: 1rem; } }
+        .recognition-card {
+            background: var(--bg-card); border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg); padding: 2rem 1.5rem;
+            text-align: center; transition: all 0.3s ease;
+        }
+        .recognition-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-card);
+        }
+        .recognition-icon {
+            font-size: 2rem; color: var(--accent); margin-bottom: 1rem;
+        }
+        .recognition-title { font-size: 1rem; margin-bottom: 0.35rem; }
+        .recognition-desc { font-size: 0.8rem; color: var(--text-muted); }
+
+        /* CTA */
+        .about-cta {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+            color: #fff; text-align: center;
+            position: relative; overflow: hidden;
+        }
+        .about-cta::before {
+            content: ''; position: absolute; top: -100px; right: -100px;
+            width: 350px; height: 350px; border-radius: 50%;
+            background: rgba(255,255,255,0.08); pointer-events: none;
+        }
+        .about-cta-eyebrow {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: rgba(255,255,255,0.15); color: #fff;
+            padding: 0.4rem 0.95rem; border-radius: 50px;
+            font-size: 0.72rem; font-weight: 800; letter-spacing: 0.1em;
+            text-transform: uppercase; margin-bottom: 1.25rem;
+        }
+        .about-cta-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: #fff; margin-bottom: 1rem; letter-spacing: -0.025em;
+        }
+        .about-cta-desc {
+            color: rgba(255,255,255,0.9); font-size: 1.05rem;
+            max-width: 560px; margin: 0 auto 2rem; line-height: 1.7;
+        }
+        .about-cta-actions {
+            display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+        }
+        @media (max-width: 480px) {
+            .about-cta-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .about-cta-actions a {
+                width: 100% !important;
+                justify-content: center !important;
+            }
+        }
+        .about-cta .btn-primary {
+            background: #fff !important; color: var(--accent) !important;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .about-cta .btn-primary span { color: var(--accent) !important; font-weight: 800; }
+        .about-cta .btn-primary .btn-icon-capsule { background: var(--accent-subtle) !important; color: var(--accent) !important; }
+        .about-cta .btn-primary .btn-icon-capsule i { color: var(--accent) !important; }
+        .about-cta .btn-primary:hover { background: #fdf6ef !important; }
+        .about-cta .btn-secondary {
+            background: transparent; color: #fff;
+            border-color: rgba(255,255,255,0.5);
+        }
+        .about-cta .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: #fff; color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ========== NAVBAR (EXACT REPLICA) ========== -->
+<header class="navbar-container">
+    <div class="container navbar-flex">
+        <a href="index.html" class="logo">
+            <div class="logo-badge"><i class="fas fa-bread-slice"></i></div>
+            <div class="logo-text-block">
+                <span class="logo-title">FLOUR<span>HOUSE</span></span>
+                <span class="logo-sub">ARTISAN BAKERY & PASTRY</span>
+            </div>
+        </a>
+
+        <nav class="desktop-nav">
+            <div class="home-dropdown" id="home-dropdown">
+                <button class="home-pill-btn" onclick="toggleDropdown()" aria-haspopup="true" aria-expanded="false">
+                    Home <i class="fas fa-chevron-up" id="dropdown-chevron" style="font-size: 0.75rem;"></i>
+                </button>
+                <div class="dropdown-menu" id="dropdown-menu">
+                    <a href="index.html" class="dropdown-item">Home 1</a>
+                    <a href="home2.html" class="dropdown-item">Home 2</a>
+                </div>
+            </div>
+            <a href="about.html" class="nav-link active">About</a>
+            <a href="product.html" class="nav-link">Products</a>
+            <a href="custom.html" class="nav-link">Custom Orders</a>
+            <a href="pricing.html" class="nav-link">Pricing</a>
+            <a href="gallery.html" class="nav-link">Gallery</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+
+        <div class="navbar-right">
+            <button class="circle-btn" id="theme-btn" title="Toggle Theme"><i class="fas fa-moon" id="theme-icon"></i></button>
+            <button class="circle-btn" id="rtl-btn" title="Toggle Direction"><i class="fas fa-exchange-alt"></i></button>
+            <a href="contact.html" class="visit-store-btn"><i class="fas fa-map-marker-alt"></i> Visit Bakery</a>
+        </div>
+
+        <button class="mobile-toggle" id="open-drawer" aria-label="Open Mobile Menu"><i class="fas fa-bars"></i></button>
+    </div>
+</header>
+
+<!-- Mobile Drawer -->
+<div class="mobile-backdrop" id="mobile-backdrop"></div>
+<div class="mobile-drawer" id="mobile-drawer">
+    <div class="mobile-menu-header">
+        <div class="logo">
+            <div class="logo-badge"><i class="fas fa-bread-slice"></i></div>
+            <div class="logo-text-block">
+                <span class="logo-title">FLOUR<span>HOUSE</span></span>
+                <span class="logo-sub">BAKERY & PASTRY</span>
+            </div>
+        </div>
+        <button id="close-drawer" style="background: none; border: none; font-size: 1.5rem; color: var(--text-main); cursor: pointer;"><i class="fas fa-times"></i></button>
+    </div>
+    <div style="background: var(--accent-subtle); border: 1.5px solid var(--accent); padding: 0.85rem; border-radius: 14px; margin-bottom: 1.5rem;">
+        <span style="font-size: 0.75rem; font-weight: 800; color: var(--accent); text-transform: uppercase; display: block; margin-bottom: 0.5rem;">Select Homepage:</span>
+        <div style="display: flex; gap: 0.5rem;">
+            <a href="index.html" style="flex: 1; text-align: center; background: var(--bg-card); color: var(--text-main); border: 1px solid var(--border-subtle); padding: 0.5rem; border-radius: 8px; font-weight: 700; font-size: 0.85rem;">Home 1</a>
+            <a href="home2.html" style="flex: 1; text-align: center; background: var(--bg-card); color: var(--text-main); border: 1px solid var(--border-subtle); padding: 0.5rem; border-radius: 8px; font-weight: 700; font-size: 0.85rem;">Home 2</a>
+        </div>
+    </div>
+    <ul class="mobile-links">
+        <li><a href="about.html" class="mobile-link-item active" onclick="closeDrawer()">About</a></li>
+        <li><a href="product.html" class="mobile-link-item" onclick="closeDrawer()">Products</a></li>
+        <li><a href="custom.html" class="mobile-link-item" onclick="closeDrawer()">Custom Orders</a></li>
+        <li><a href="pricing.html" class="mobile-link-item" onclick="closeDrawer()">Pricing</a></li>
+        <li><a href="gallery.html" class="mobile-link-item" onclick="closeDrawer()">Gallery</a></li>
+        <li><a href="contact.html" class="mobile-link-item" onclick="closeDrawer()">Contact</a></li>
+    </ul>
+    <div style="display: flex; flex-direction: column; gap: 0.75rem; border-top: 1px solid var(--border-subtle); padding-top: 1.5rem;">
+        <button onclick="toggleTheme()" class="btn-secondary" style="width: 100%; justify-content: center;"><i class="fas fa-adjust"></i> Dark / Light Mode</button>
+        <button onclick="toggleDirection()" class="btn-secondary" style="width: 100%; justify-content: center;"><i class="fas fa-exchange-alt"></i> Toggle RTL</button>
+        <a href="contact.html" class="visit-store-btn" onclick="closeDrawer()" style="width: 100%; justify-content: center;"><i class="fas fa-map-marker-alt"></i> Visit Bakery</a>
+    </div>
+</div>
+
+<!-- ========== ABOUT HERO ========== -->
+<section class="about-hero">
+    <div class="container">
+        <span class="about-hero-eyebrow"><i class="fas fa-seedling"></i> Our Story · Since 2014</span>
+        <h1 class="about-hero-title">
+            Honest Bread, <em>Honest Hands,</em><br>Honest Ingredients.
+        </h1>
+        <p class="about-hero-desc">
+            FlourHouse began as a single stone-deck oven in a converted garage. A decade later, we're still baking the same way — with wild fermentation, organic grains, and the kind of patience that only comes from loving what you do.
+        </p>
+    </div>
+</section>
+
+<!-- ========== STORY SPLIT ========== -->
+<section class="story-split">
+    <div class="container">
+        <div class="story-grid">
+            <div class="story-visual">
+                <img src="https://images.unsplash.com/photo-1504113888839-1c8eb50233d3?q=80&w=900&auto=format&fit=crop" alt="Baker at work with dough">
+                <div class="story-visual-badge">
+                    <i class="fas fa-award"></i>
+                    <div>
+                        <strong>Best Artisan Bakery 2025</strong>
+                        <span>City Food & Wine Awards</span>
+                    </div>
+                </div>
+            </div>
+            <div class="story-content">
+                <span class="section-eyebrow"><i class="fas fa-book-open"></i> The Beginning</span>
+                <h2>From a Garage Oven to a Neighborhood Institution</h2>
+                <p class="story-lead">
+                    In 2014, our founder Martin left a corporate pastry career to bake bread the way his grandmother did — slowly, honestly, and with flour on his sleeves.
+                </p>
+                <p>
+                    The first FlourHouse loaves were sold from a folding table at the Saturday farmers' market. Word spread quickly. Within six months, we'd outgrown the garage and moved into our current home on Hearthstone Avenue — a former 1920s print shop with exposed brick and the perfect corner for a stone-deck oven.
+                </p>
+                <p>
+                    Today, we bake over 800 loaves and 2,000 pastries every week. But the philosophy hasn't changed: four ingredients, thirty-six hours, and zero shortcuts. Every loaf is still scored by hand, every croissant still folded twenty-seven times.
+                </p>
+                <a href="product.html" class="btn-primary" style="margin-top: 1rem;">
+                    <span>Explore Our Daily Bakes</span>
+                    <div class="btn-icon-capsule"><i class="fas fa-arrow-right"></i></div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== STATS BAND ========== -->
+<section class="stats-band">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-cell">
+                <div class="stat-val">10+</div>
+                <div class="stat-lbl">Years Baking</div>
+            </div>
+            <div class="stat-cell">
+                <div class="stat-val">800+</div>
+                <div class="stat-lbl">Loaves Weekly</div>
+            </div>
+            <div class="stat-cell">
+                <div class="stat-val">36h</div>
+                <div class="stat-lbl">Cold Ferment</div>
+            </div>
+            <div class="stat-cell">
+                <div class="stat-val">100%</div>
+                <div class="stat-lbl">Organic Flour</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== VALUES ========== -->
+<section class="values-section">
+    <div class="container">
+        <div class="section-head-center">
+            <span class="section-eyebrow"><i class="fas fa-heart"></i> Our Philosophy</span>
+            <h2 class="section-title-main">Three Promises We Never Break</h2>
+            <p class="section-desc-main">The principles behind every loaf, pastry, and cake that leaves our kitchen.</p>
+        </div>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon"><i class="fas fa-wheat-awn"></i></div>
+                <h3 class="value-title">Real Ingredients Only</h3>
+                <p class="value-desc">Stoneground organic flour, filtered water, Guérande sea salt, and wild levain. No commercial yeast, no dough conditioners, no preservatives — ever.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon"><i class="fas fa-hourglass-half"></i></div>
+                <h3 class="value-title">Time Over Speed</h3>
+                <p class="value-desc">Our sourdough ferments for 36 cold hours. Our croissants rest overnight. We refuse to rush fermentation — because time is the most important ingredient we use.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                <h3 class="value-title">Craft Over Scale</h3>
+                <p class="value-desc">Every loaf is scored by hand. Every pastry is folded by a baker, not a machine. We could produce more — but we'd rather produce better.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== TEAM ========== -->
+<section class="team-section">
+    <div class="container">
+        <div class="section-head-center">
+            <span class="section-eyebrow"><i class="fas fa-users"></i> The Bakers</span>
+            <h2 class="section-title-main">The Hands Behind the Hearth</h2>
+            <p class="section-desc-main">A small team of obsessive bakers, pastry chefs, and coffee nerds who start their day at 4 AM.</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-img"><img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?q=80&w=600&auto=format&fit=crop&crop=face" alt="Martin Kowalski"></div>
+                <div class="team-body">
+                    <h3 class="team-name">Martin Kowalski</h3>
+                    <div class="team-role">Founder & Head Baker</div>
+                    <p class="team-bio">Former corporate pastry chef who traded the fine-dining world for wild fermentation and a stone-deck oven.</p>
+                </div>
+            </div>
+            <div class="team-card">
+                <div class="team-img"><img src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?q=80&w=600&auto=format&fit=crop&crop=face" alt="Margaux Laurent"></div>
+                <div class="team-body">
+                    <h3 class="team-name">Margaux Laurent</h3>
+                    <div class="team-role">Head Pâtissière</div>
+                    <p class="team-bio">Trained in Lyon, Margaux brings French precision to every laminated dough and hand-piped éclair.</p>
+                </div>
+            </div>
+            <div class="team-card">
+                <div class="team-img"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop&crop=face" alt="David Chen"></div>
+                <div class="team-body">
+                    <h3 class="team-name">David Chen</h3>
+                    <div class="team-role">Sourdough Specialist</div>
+                    <p class="team-bio">Keeper of our 10-year-old levain. David can tell when the starter is ready just by its smell.</p>
+                </div>
+            </div>
+            <div class="team-card">
+                <div class="team-img"><img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=600&auto=format&fit=crop&crop=face" alt="Sofia Rossi"></div>
+                <div class="team-body">
+                    <h3 class="team-name">Sofia Rossi</h3>
+                    <div class="team-role">Cake Designer</div>
+                    <p class="team-bio">Sofia sculpts our custom celebration cakes — from minimalist wedding tiers to whimsical birthday creations.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== CRAFT PROCESS ========== -->
+<section class="craft-section">
+    <div class="container">
+        <div class="section-head-center">
+            <span class="section-eyebrow"><i class="fas fa-history"></i> The Craft</span>
+            <h2 class="section-title-main">How a FlourHouse Loaf Is Born</h2>
+            <p class="section-desc-main">Four deliberate steps — each one impossible to rush.</p>
+        </div>
+        <div class="craft-timeline">
+            <div class="craft-step">
+                <div class="craft-step-num">01</div>
+                <div class="craft-step-body">
+                    <div class="craft-step-time">Day 1 · 2:00 PM</div>
+                    <h3 class="craft-step-title">Starter Feed & Autolyse</h3>
+                    <p class="craft-step-desc">Our 10-year-old levain is refreshed with stoneground flour and filtered water. Separately, tomorrow's dough begins a gentle two-hour autolyse — allowing flour and water to bond before any mixing.</p>
+                </div>
+            </div>
+            <div class="craft-step">
+                <div class="craft-step-num">02</div>
+                <div class="craft-step-body">
+                    <div class="craft-step-time">Day 1 · 6:00 PM</div>
+                    <h3 class="craft-step-title">Mix, Fold & Bulk Ferment</h3>
+                    <p class="craft-step-desc">Dough is mixed gently, then folded every 45 minutes to build strength without oxidizing the crumb. It rests overnight in our cold room at 4°C for a slow, flavor-building bulk ferment.</p>
+                </div>
+            </div>
+            <div class="craft-step">
+                <div class="craft-step-num">03</div>
+                <div class="craft-step-body">
+                    <div class="craft-step-time">Day 2 · 3:30 AM</div>
+                    <h3 class="craft-step-title">Shape, Proof & Score</h3>
+                    <p class="craft-step-desc">Boules are shaped by hand, placed in wicker bannetons, and given a final cold proof. At dawn, each loaf is turned out, dusted with rice flour, and slashed with a razor lame in our signature pattern.</p>
+                </div>
+            </div>
+            <div class="craft-step">
+                <div class="craft-step-num">04</div>
+                <div class="craft-step-body">
+                    <div class="craft-step-time">Day 2 · 4:30 AM</div>
+                    <h3 class="craft-step-title">Stone Hearth Bake</h3>
+                    <p class="craft-step-desc">Loaves are loaded onto 450°F basalt stone decks with pressurized steam. Twenty minutes later, they emerge blistered, golden, and singing — ready for the morning counter.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== RECOGNITION ========== -->
+<section class="recognition-section">
+    <div class="container">
+        <div class="section-head-center">
+            <span class="section-eyebrow"><i class="fas fa-trophy"></i> Recognition</span>
+            <h2 class="section-title-main">Awards & Press</h2>
+            <p class="section-desc-main">We're honored to be recognized by the food community we love.</p>
+        </div>
+        <div class="recognition-grid">
+            <div class="recognition-card">
+                <i class="fas fa-trophy recognition-icon"></i>
+                <h3 class="recognition-title">Best Artisan Bakery</h3>
+                <p class="recognition-desc">City Food & Wine Awards · 2025</p>
+            </div>
+            <div class="recognition-card">
+                <i class="fas fa-star recognition-icon"></i>
+                <h3 class="recognition-title">Top 10 Sourdough</h3>
+                <p class="recognition-desc">National Baker's Guild · 2024</p>
+            </div>
+            <div class="recognition-card">
+                <i class="fas fa-newspaper recognition-icon"></i>
+                <h3 class="recognition-title">"The Loaf to Beat"</h3>
+                <p class="recognition-desc">The Culinary Review · 2024</p>
+            </div>
+            <div class="recognition-card">
+                <i class="fas fa-medal recognition-icon"></i>
+                <h3 class="recognition-title">Sustainable Bakery</h3>
+                <p class="recognition-desc">Green Food Council · 2023</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== CTA ========== -->
+<section class="about-cta">
+    <div class="container">
+        <span class="about-cta-eyebrow"><i class="fas fa-bread-slice"></i> Come Taste the Difference</span>
+        <h2 class="about-cta-title">Visit the Bakery, Meet the Bakers</h2>
+        <p class="about-cta-desc">
+            The best way to understand our craft is to taste it. Stop by for a warm loaf, a flaky croissant, and a conversation about fermentation.
+        </p>
+        <div class="about-cta-actions">
+            <a href="contact.html" class="btn-primary">
+                <span>Find Our Bakery</span>
+                <div class="btn-icon-capsule"><i class="fas fa-map-marker-alt"></i></div>
+            </a>
+            <a href="product.html" class="btn-secondary">
+                <i class="fas fa-bread-slice"></i> Browse Our Menu
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ========== FOOTER (EXACT REPLICA) ========== -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <a href="index.html" class="logo" style="margin-bottom: 1rem; display: inline-flex;">
+                    <div class="logo-badge"><i class="fas fa-bread-slice"></i></div>
+                    <div class="logo-text-block">
+                        <span class="logo-title">FLOUR<span>HOUSE</span></span>
+                        <span class="logo-sub">ARTISAN BAKERY & PASTRY</span>
+                    </div>
+                </a>
+                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; max-width: 320px;">
+                    Handcrafted sourdoughs, French viennoiserie, and celebration cakes baked fresh at dawn every single morning.
+                </p>
+            </div>
+            <div>
+                <h4>Quick Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home 1 (Artisan Hearth)</a></li>
+                    <li><a href="home2.html">Home 2 (Parisian Atelier)</a></li>
+                    <li><a href="about.html" style="color: var(--accent); font-weight: 700;">About Our Craft</a></li>
+                    <li><a href="product.html">Daily Bakes Menu</a></li>
+                    <li><a href="gallery.html">Photo Gallery</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Specialties</h4>
+                <ul>
+                    <li><a href="product.html">Artisan Breads & Pastries</a></li>
+                    <li><a href="custom.html">Custom Celebration Cakes</a></li>
+                    <li><a href="pricing.html">Weekly Bread Club</a></li>
+                    <li><a href="contact.html">Store Hours & Location</a></li>
+                    <li><a href="contact.html">Inquiries & Bulk Orders</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Join Dawn Gazette</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Receive weekend secret bake releases, seasonal tarts, and sourdough recipe tips.</p>
+                <form onsubmit="handleGazetteSubmit(event)" style="display: flex; gap: 0.5rem;">
+                    <input type="email" placeholder="Your email address" class="form-input" required>
+                    <button type="submit" class="btn-primary" style="padding: 0.6rem 1rem;"><i class="fas fa-arrow-right"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            © 2026 FLOURHOUSE Artisan Bakery & Pastry Shop. All rights reserved. Handcrafted with passion.
+        </div>
+    </div>
+</footer>
+
+<!-- Toast -->
+<div class="toast-msg" id="toast-msg">
+    <i class="fas fa-check-circle" style="color: var(--accent); font-size: 1.25rem;"></i>
+    <span id="toast-text">Welcome to the Dawn Gazette!</span>
+</div>
+
+<script>
+    function toggleDropdown() {
+        const dd = document.getElementById('home-dropdown');
+        const chevron = document.getElementById('dropdown-chevron');
+        dd.classList.toggle('active');
+        if (chevron) chevron.className = dd.classList.contains('active') ? 'fas fa-chevron-down' : 'fas fa-chevron-up';
+    }
+    document.addEventListener('click', function(e) {
+        const dd = document.getElementById('home-dropdown');
+        if (dd && !dd.contains(e.target)) {
+            dd.classList.remove('active');
+            const chevron = document.getElementById('dropdown-chevron');
+            if (chevron) chevron.className = 'fas fa-chevron-up';
+        }
+    });
+
+    const drawer = document.getElementById('mobile-drawer');
+    const backdrop = document.getElementById('mobile-backdrop');
+    if (document.getElementById('open-drawer')) document.getElementById('open-drawer').onclick = () => { drawer.classList.add('active'); backdrop.classList.add('active'); };
+    if (document.getElementById('close-drawer')) document.getElementById('close-drawer').onclick = () => { drawer.classList.remove('active'); backdrop.classList.remove('active'); };
+    if (backdrop) backdrop.onclick = () => { drawer.classList.remove('active'); backdrop.classList.remove('active'); };
+    function closeDrawer() { if (drawer) drawer.classList.remove('active'); if (backdrop) backdrop.classList.remove('active'); }
+
+    function toggleTheme() {
+        const html = document.documentElement;
+        const next = (html.getAttribute('data-theme') || 'light') === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', next);
+        localStorage.setItem('fh_theme', next);
+        updateThemeIcon(next);
+        showToast('Switched to ' + next.toUpperCase() + ' mode');
+    }
+    function updateThemeIcon(t) {
+        const icon = document.getElementById('theme-icon');
+        if (icon) icon.className = t === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    }
+    function toggleDirection() {
+        const html = document.documentElement;
+        const next = (html.getAttribute('dir') || 'ltr') === 'rtl' ? 'ltr' : 'rtl';
+        html.setAttribute('dir', next);
+        localStorage.setItem('fh_dir', next);
+        showToast('Direction set to ' + next.toUpperCase());
+    }
+    (function init() {
+        const t = localStorage.getItem('fh_theme');
+        if (t) { document.documentElement.setAttribute('data-theme', t); updateThemeIcon(t); }
+        const d = localStorage.getItem('fh_dir');
+        if (d) document.documentElement.setAttribute('dir', d);
+    })();
+
+    function showToast(msg) {
+        const toast = document.getElementById('toast-msg');
+        const text = document.getElementById('toast-text');
+        if (text) text.textContent = msg;
+        if (toast) { toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 3200); }
+    }
+    function handleGazetteSubmit(e) {
+        e.preventDefault();
+        showToast('Welcome to the Dawn Gazette! You are on our list.');
+        e.target.reset();
+    }
+    document.getElementById('theme-btn').onclick = toggleTheme;
+    document.getElementById('rtl-btn').onclick = toggleDirection;
+</script>
+
+</body>
+</html>

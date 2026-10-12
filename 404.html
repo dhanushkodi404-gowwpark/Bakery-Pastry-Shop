@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="404 Page Not Found – The requested page could not be found at FlourHouse Artisan Bakery & Pastry Shop.">
+    <title>404 | Crumb Not Found – FLOURHOUSE Artisan Bakery</title>
+    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥐</text></svg>" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ===== 404 PAGE CUSTOM STYLES ===== */
+        .error-hero {
+            padding: 5.5rem 0 4.5rem;
+            background: radial-gradient(circle at 50% 15%, rgba(197, 137, 78, 0.12) 0%, transparent 65%), var(--bg-main);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .error-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--accent-subtle);
+            color: var(--accent);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--accent);
+        }
+
+        .error-code-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            font-size: clamp(4.5rem, 14vw, 8.5rem);
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 700;
+            line-height: 1;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            user-select: none;
+        }
+
+        .error-zero-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: clamp(4rem, 12vw, 7.5rem);
+            height: clamp(4rem, 12vw, 7.5rem);
+            border-radius: 50%;
+            background: var(--accent-subtle);
+            border: 3px dashed var(--accent);
+            color: var(--accent);
+            font-size: clamp(2rem, 6vw, 3.8rem);
+            animation: slowRotate 24s linear infinite;
+        }
+
+        @keyframes slowRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .error-title {
+            font-size: clamp(1.85rem, 5vw, 3rem);
+            letter-spacing: -0.025em;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .error-title em {
+            font-style: italic;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .error-desc {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.7;
+        }
+
+        /* Search input on 404 */
+        .error-search-wrap {
+            max-width: 480px;
+            margin: 0 auto 2.5rem;
+            position: relative;
+        }
+
+        .error-search-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .error-search-box input {
+            width: 100%;
+            padding: 0.95rem 3.5rem 0.95rem 1.4rem;
+            border-radius: 50px;
+            border: 1.5px solid var(--border-subtle);
+            background: var(--bg-card);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.95rem;
+            box-shadow: var(--shadow-card);
+            transition: all 0.25s ease;
+        }
+
+        .error-search-box input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px var(--accent-subtle);
+        }
+
+        .error-search-box button {
+            position: absolute;
+            right: 6px;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .error-search-box button:hover {
+            background: var(--accent-hover);
+            transform: scale(1.05);
+        }
+
+        .error-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3.5rem;
+        }
+
+        @media (max-width: 480px) {
+            .error-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .error-actions a {
+                width: 100% !important;
+                justify-content: center !important;
+            }
+        }
+
+        /* DESTINATION CARDS SECTION */
+        .error-dest-section {
+            padding: 6rem 0 7rem;
+            background: var(--bg-alt);
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .dest-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.75rem;
+            margin: 2.75rem 0 4.5rem;
+        }
+
+        @media (max-width: 992px) {
+            .dest-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+                margin: 2.25rem 0 3.5rem;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .dest-grid {
+                grid-template-columns: 1fr;
+                gap: 1.25rem;
+                margin: 2rem 0 3rem;
+            }
+        }
+
+        .dest-card {
+            background: var(--bg-card);
+            border: 1.5px solid var(--border-subtle);
+            border-radius: var(--radius-xl);
+            padding: 2rem 1.75rem;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-card);
+            position: relative;
+        }
+
+        .dest-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .dest-card-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: var(--accent-subtle);
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+            margin-bottom: 1.35rem;
+            transition: all 0.3s ease;
+        }
+
+        .dest-card:hover .dest-card-icon {
+            background: var(--accent);
+            color: #fff;
+            transform: scale(1.08);
+        }
+
+        .dest-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.6rem;
+            color: var(--text-main);
+        }
+
+        .dest-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .dest-card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .dest-card:hover .dest-card-link i {
+            transform: translateX(4px);
+            transition: transform 0.2s ease;
+        }
+
+        /* WARM QUOTE BANNER */
+        .crumb-quote-banner {
+            margin-top: 4.5rem;
+            margin-bottom: 1.5rem;
+            background: var(--bg-card);
+            border: 1.5px dashed var(--accent);
+            border-radius: var(--radius-xl);
+            padding: 2.25rem 2.75rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            box-shadow: var(--shadow-card);
+        }
+
+        @media (max-width: 680px) {
+            .crumb-quote-banner {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.85rem 1.35rem;
+                gap: 1.25rem;
+                margin-top: 3rem;
+            }
+        }
+
+        .crumb-quote-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 2px solid var(--accent);
+        }
+
+        .crumb-quote-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .crumb-quote-text h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.35rem;
+            color: var(--text-main);
+        }
+
+        .crumb-quote-text p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin: 0;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ========== NAVBAR ========== -->
+<header class="navbar-container">
+    <div class="container navbar-flex">
+        <a href="index.html" class="logo">
+            <div class="logo-badge"><i class="fas fa-bread-slice"></i></div>
+            <div class="logo-text-block">
+                <span class="logo-title">FLOUR<span>HOUSE</span></span>
+                <span class="logo-sub">ARTISAN BAKERY & PASTRY</span>
+            </div>
+        </a>
+
+        <nav class="desktop-nav">
+            <div class="home-dropdown" id="home-dropdown">
+                <button class="home-pill-btn" onclick="toggleDropdown()" aria-haspopup="true" aria-expanded="false">
+                    Home <i class="fas fa-chevron-up" id="dropdown-chevron" style="font-size: 0.75rem;"></i>
+                </button>
+                <div class="dropdown-menu" id="dropdown-menu">
+                    <a href="index.html" class="dropdown-item">Home 1</a>
+                    <a href="home2.html" class="dropdown-item">Home 2</a>
+                </div>
+            </div>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="product.html" class="nav-link">Products</a>
+            <a href="custom.html" class="nav-link">Custom Orders</a>
+            <a href="pricing.html" class="nav-link">Pricing</a>
+            <a href="gallery.html" class="nav-link">Gallery</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+
+        <div class="navbar-right">
+            <button class="circle-btn" id="theme-btn" title="Toggle Theme"><i class="fas fa-moon" id="theme-icon"></i></button>
+            <button class="circle-btn" id="rtl-btn" title="Toggle Direction"><i class="fas fa-exchange-alt"></i></button>
+            <a href="contact.html" class="visit-store-btn"><i class="fas fa-map-marker-alt"></i> Visit Bakery</a>
+        </div>
+
+        <button class="mobile-toggle" id="open-drawer" aria-label="Open Mobile Menu"><i class="fas fa-bars"></i></button>
+    </div>
+</header>
+
+<!-- Mobile Drawer -->
+<div class="mobile-backdrop" id="mobile-backdrop"></div>
+<div class="mobile-drawer" id="mobile-drawer">
+    <div class="mobile-menu-header">
+        <div class="logo">
+            <div class="logo-badge"><i class="fas fa-bread-slice"></i></div>
+            <div class="logo-text-block">
+                <span class="logo-title">FLOUR<span>HOUSE</span></span>
+                <span class="logo-sub">BAKERY & PASTRY</span>
+            </div>
+        </div>
+        <button id="close-drawer" style="background: none; border: none; font-size: 1.5rem; color: var(--text-main); cursor: pointer;"><i class="fas fa-times"></i></button>
+    </div>
+    <div style="background: var(--accent-subtle); border: 1.5px solid var(--accent); padding: 0.85rem; border-radius: 14px; margin-bottom: 1.5rem;">
+        <span style="font-size: 0.75rem; font-weight: 800; color: var(--accent); text-transform: uppercase; display: block; margin-bottom: 0.5rem;">Select Homepage:</span>
+        <div style="display: flex; gap: 0.5rem;">
+            <a href="index.html" style="flex: 1; text-align: center; background: var(--bg-card); color: var(--text-main); border: 1px solid var(--border-subtle); padding: 0.5rem; border-radius: 8px; font-weight: 700; font-size: 0.85rem;">Home 1</a>
+            <a href="home2.html" style="flex: 1; text-align: center; background: var(--bg-card); color: var(--text-main); border: 1px solid var(--border-subtle); padding: 0.5rem; border-radius: 8px; font-weight: 700; font-size: 0.85rem;">Home 2</a>
+        </div>
+    </div>
+    <ul class="mobile-links">
+        <li><a href="about.html" class="mobile-link-item" onclick="closeDrawer()">About</a></li>
+        <li><a href="product.html" class="mobile-link-item" onclick="closeDrawer()">Products</a></li>
+        <li><a href="custom.html" class="mobile-link-item" onclick="closeDrawer()">Custom Orders</a></li>
+        <li><a href="pricing.html" class="mobile-link-item" onclick="closeDrawer()">Pricing</a></li>
+        <li><a href="gallery.html" class="mobile-link-item" onclick="closeDrawer()">Gallery</a></li>
+        <li><a href="contact.html" class="mobile-link-item" onclick="closeDrawer()">Contact</a></li>
+    </ul>
+    <div style="display: flex; flex-direction: column; gap: 0.75rem; border-top: 1px solid var(--border-subtle); padding-top: 1.5rem;">
+        <button onclick="toggleTheme()" class="btn-secondary" style="width: 100%; justify-content: center;"><i class="fas fa-adjust"></i> Dark / Light Mode</button>
+        <button onclick="toggleDirection()" class="btn-secondary" style="width: 100%; justify-content: center;"><i class="fas fa-exchange-alt"></i> Toggle RTL</button>
+        <a href="contact.html" class="visit-store-btn" onclick="closeDrawer()" style="width: 100%; justify-content: center;"><i class="fas fa-map-marker-alt"></i> Visit Bakery</a>
+    </div>
+</div>
+
+<!-- ========== 404 HERO SECTION ========== -->
+<main class="error-hero">
+    <div class="container">
+        <div class="error-eyebrow">
+            <i class="fas fa-cookie-bite"></i> Error 404 • Crumb Not Found
+        </div>
+
+        <div class="error-code-badge">
+            <span>4</span>
+            <span class="error-zero-icon" title="Oven Hearth Loaf"><i class="fas fa-bread-slice"></i></span>
+            <span>4</span>
+        </div>
+
+        <h1 class="error-title">
+            This Page Has <em>Crumbled Away</em>
+        </h1>
+
+        <p class="error-desc">
+            We searched every proofing basket, oven shelf, and sourdough jar, but the page you are looking for has been eaten, moved, or never existed in our bakery catalog.
+        </p>
+
+        <!-- Search Bar -->
+        <div class="error-search-wrap">
+            <form class="error-search-box" onsubmit="handleErrorSearch(event)">
+                <input type="text" id="error-search-input" placeholder="Search breads, croissants, cakes..." required>
+                <button type="submit" aria-label="Search items"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+
+        <!-- Call to Action Buttons -->
+        <div class="error-actions">
+            <a href="index.html" class="btn-primary">
+                <i class="fas fa-home"></i> Return to Home
+            </a>
+            <a href="product.html" class="btn-secondary">
+                <i class="fas fa-bread-slice"></i> Browse Daily Bakes
+            </a>
+            <a href="contact.html" class="btn-secondary">
+                <i class="fas fa-map-marker-alt"></i> Find Our Bakery
+            </a>
+        </div>
+    </div>
+</main>
+
+<!-- ========== QUICK DESTINATION BENTO SECTION ========== -->
+<section class="error-dest-section">
+    <div class="container">
+        <div style="text-align: center; max-width: 620px; margin: 0 auto 1.5rem;">
+            <div class="error-eyebrow" style="background: var(--bg-card);"><i class="fas fa-compass"></i> Popular Destinations</div>
+            <h2 style="font-size: clamp(1.6rem, 4vw, 2.3rem); margin-bottom: 0.5rem; letter-spacing: -0.025em;">Where Would You Like to Go?</h2>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">Jump straight into our most-loved bakery corners and daily creations.</p>
+        </div>
+
+        <div class="dest-grid">
+            <!-- 1. Menu -->
+            <a href="product.html" class="dest-card">
+                <div>
+                    <div class="dest-card-icon"><i class="fas fa-croissant"></i></div>
+                    <h3>Daily Bakes Menu</h3>
+                    <p>Flaky butter croissants, sourdough boules, and fresh fruit tarts baked fresh from 5:00 AM.</p>
+                </div>
+                <div class="dest-card-link">View Menu <i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 2. Custom Cakes -->
+            <a href="custom.html" class="dest-card">
+                <div>
+                    <div class="dest-card-icon"><i class="fas fa-birthday-cake"></i></div>
+                    <h3>Custom Cakes</h3>
+                    <p>Botanical wedding tiers, vintage piped Lambeth cakes, and custom anniversary confections.</p>
+                </div>
+                <div class="dest-card-link">Design a Cake <i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 3. Our Craft -->
+            <a href="about.html" class="dest-card">
+                <div>
+                    <div class="dest-card-icon"><i class="fas fa-fire-burner"></i></div>
+                    <h3>Our Craft Story</h3>
+                    <p>Meet our master bakers and discover the 36-hour wild levain and stone-milled grains we use.</p>
+                </div>
+                <div class="dest-card-link">Our Heritage <i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 4. Photo Gallery -->
+            <a href="gallery.html" class="dest-card">
+                <div>
+                    <div class="dest-card-icon"><i class="fas fa-camera-retro"></i></div>
+                    <h3>Atelier Gallery</h3>
+                    <p>Explore 24 unique photographs of morning bakes, oven pulls, and artisanal pastry details.</p>
+                </div>
+                <div class="dest-card-link">Open Gallery <i class="fas fa-arrow-right"></i></div>
+            </a>
+        </div>
+
+        <!-- Baker's Warm Note -->
+        <div class="crumb-quote-banner">
+            <div class="crumb-quote-img">
+                <img src="https://images.unsplash.com/photo-1483695028939-5bb13f8648b0?q=80&w=400&auto=format&fit=crop" alt="Pastry table crumbs">
+            </div>
+            <div class="crumb-quote-text">
+                <h4>Baker's Philosophy: "No Crumb Goes Unforgiven"</h4>
+                <p>"In French baking, a stray crumb on the stone bench simply means something delicious was made here today. Don't worry about getting lost — warm bread is waiting for you back home."</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <a href="index.html" class="logo" style="margin-bottom: 1.25rem;">
+                    <div class="logo-badge"><i class="fas fa-bread-slice"></i></div>
+                    <div class="logo-text-block">
+                        <span class="logo-title">FLOUR<span>HOUSE</span></span>
+                        <span class="logo-sub">ARTISAN BAKERY & PASTRY</span>
+                    </div>
+                </a>
+                <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.65; max-width: 320px;">
+                    Handcrafted sourdough, laminated pastries, and celebration cakes made with organic stone-ground flours and slow wild fermentation.
+                </p>
+            </div>
+            <div>
+                <h4>Quick Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home 1 (Artisan Hearth)</a></li>
+                    <li><a href="home2.html">Home 2 (Parisian Atelier)</a></li>
+                    <li><a href="about.html">About Our Craft</a></li>
+                    <li><a href="product.html">Daily Bakes Menu</a></li>
+                    <li><a href="gallery.html">Photo Gallery</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Specialties</h4>
+                <ul>
+                    <li><a href="product.html">Artisan Breads & Pastries</a></li>
+                    <li><a href="custom.html">Custom Celebration Cakes</a></li>
+                    <li><a href="pricing.html">Weekly Bread Club</a></li>
+                    <li><a href="contact.html">Store Hours & Location</a></li>
+                    <li><a href="contact.html">Inquiries & Bulk Orders</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Join Dawn Gazette</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Receive weekend secret bake releases, seasonal tarts, and sourdough recipe tips.</p>
+                <form onsubmit="handleGazetteSubmit(event)" style="display: flex; gap: 0.5rem;">
+                    <input type="email" placeholder="Your email address" class="form-input" required>
+                    <button type="submit" class="btn-primary" style="padding: 0.6rem 1rem;"><i class="fas fa-arrow-right"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            © 2026 FLOURHOUSE Artisan Bakery & Pastry Shop. All rights reserved. Handcrafted with passion.
+        </div>
+    </div>
+</footer>
+
+<!-- Toast notification -->
+<div class="toast-msg" id="toast-msg">
+    <i class="fas fa-check-circle" style="color: var(--accent); font-size: 1.25rem;"></i>
+    <span id="toast-text">Welcome to the Dawn Gazette!</span>
+</div>
+
+<script>
+    // Home Dropdown
+    function toggleDropdown() {
+        const dd = document.getElementById('home-dropdown');
+        const chevron = document.getElementById('dropdown-chevron');
+        dd.classList.toggle('active');
+        if (chevron) chevron.className = dd.classList.contains('active') ? 'fas fa-chevron-down' : 'fas fa-chevron-up';
+    }
+    document.addEventListener('click', function(e) {
+        const dd = document.getElementById('home-dropdown');
+        if (dd && !dd.contains(e.target)) {
+            dd.classList.remove('active');
+            const chevron = document.getElementById('dropdown-chevron');
+            if (chevron) chevron.className = 'fas fa-chevron-up';
+        }
+    });
+
+    // Mobile Drawer
+    const drawer = document.getElementById('mobile-drawer');
+    const backdrop = document.getElementById('mobile-backdrop');
+    if (document.getElementById('open-drawer')) document.getElementById('open-drawer').onclick = () => { drawer.classList.add('active'); backdrop.classList.add('active'); };
+    if (document.getElementById('close-drawer')) document.getElementById('close-drawer').onclick = () => { drawer.classList.remove('active'); backdrop.classList.remove('active'); };
+    if (backdrop) backdrop.onclick = () => { drawer.classList.remove('active'); backdrop.classList.remove('active'); };
+    function closeDrawer() { if (drawer) drawer.classList.remove('active'); if (backdrop) backdrop.classList.remove('active'); }
+
+    // Theme Toggle
+    function toggleTheme() {
+        const html = document.documentElement;
+        const next = (html.getAttribute('data-theme') || 'light') === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', next);
+        localStorage.setItem('fh_theme', next);
+        updateThemeIcon(next);
+        showToast('Switched to ' + next.toUpperCase() + ' mode');
+    }
+    function updateThemeIcon(t) {
+        const icon = document.getElementById('theme-icon');
+        if (icon) icon.className = t === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    }
+
+    // Direction (RTL/LTR)
+    function toggleDirection() {
+        const html = document.documentElement;
+        const next = (html.getAttribute('dir') || 'ltr') === 'rtl' ? 'ltr' : 'rtl';
+        html.setAttribute('dir', next);
+        localStorage.setItem('fh_dir', next);
+        showToast('Direction set to ' + next.toUpperCase());
+    }
+
+    (function init() {
+        const t = localStorage.getItem('fh_theme');
+        if (t) { document.documentElement.setAttribute('data-theme', t); updateThemeIcon(t); }
+        const d = localStorage.getItem('fh_dir');
+        if (d) document.documentElement.setAttribute('dir', d);
+    })();
+
+    function showToast(msg) {
+        const toast = document.getElementById('toast-msg');
+        const text = document.getElementById('toast-text');
+        if (text) text.textContent = msg;
+        if (toast) { toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 3200); }
+    }
+
+    function handleGazetteSubmit(e) {
+        e.preventDefault();
+        showToast('Welcome to the Dawn Gazette! You are on our list.');
+        e.target.reset();
+    }
+
+    function handleErrorSearch(e) {
+        e.preventDefault();
+        const query = document.getElementById('error-search-input').value.trim();
+        if (query) {
+            window.location.href = 'product.html';
+        }
+    }
+
+    document.getElementById('theme-btn').onclick = toggleTheme;
+    document.getElementById('rtl-btn').onclick = toggleDirection;
+
+    // Image fallback
+    document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('error', function() {
+            this.src = 'https://images.unsplash.com/photo-1579697096985-41fe1430e5df?q=80&w=600&auto=format&fit=crop';
+        });
+    });
+</script>
+
+</body>
+</html>

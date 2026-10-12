@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FlourHouse Gallery – A visual journey through our bakery, hearth loaves, pastries, and celebration cakes.">
+    <title>FLOURHOUSE | Gallery</title>
+    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥐</text></svg>" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* GALLERY PAGE UNIQUE STYLES */
+        .gallery-hero {
+            padding: 5.5rem 0 4.5rem;
+            background: linear-gradient(180deg, rgba(36, 20, 14, 0.74) 0%, rgba(36, 20, 14, 0.88) 100%),
+                        url('https://images.unsplash.com/photo-1550617931-e17a7b70dce2?q=80&w=1600&auto=format&fit=crop') center 40% / cover no-repeat;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+        }
+        .gallery-hero .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.16);
+            color: #fff;
+            padding: 0.4rem 0.95rem;
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(8px);
+        }
+        .gallery-hero h1 {
+            font-size: clamp(1.85rem, 6vw, 3.5rem);
+            letter-spacing: -0.03em;
+            margin-bottom: 1rem;
+            color: #fff !important;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        .gallery-hero h1 em {
+            font-style: italic;
+            color: var(--accent-secondary) !important;
+            font-weight: 600;
+        }
+        .gallery-hero p {
+            color: rgba(255, 255, 255, 0.92);
+            max-width: 620px;
+            margin: 0 auto 2rem;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        .gallery-filters {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.6rem;
+            max-width: 900px;
+            margin: 0 auto 1.5rem;
+        }
+        .filter-tab {
+            padding: 0.6rem 1.35rem;
+            border-radius: 50px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            border: 1.5px solid rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.25s;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .filter-tab .tab-badge {
+            font-size: 0.7rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            font-weight: 800;
+        }
+        @media (max-width: 600px) {
+            .gallery-filters {
+                gap: 0.45rem;
+            }
+            .filter-tab {
+                padding: 0.45rem 0.95rem;
+                font-size: 0.75rem;
+            }
+        }
+        .filter-tab:hover {
+            border-color: var(--accent-secondary);
+            color: var(--accent-secondary);
+            background: rgba(255, 255, 255, 0.25);
+        }
+        .filter-tab.active {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+            box-shadow: 0 8px 20px -5px rgba(200, 149, 108, 0.5);
+        }
+        .filter-tab.active .tab-badge {
+            background: rgba(0, 0, 0, 0.2);
+        }
+        .gallery-counter-bar {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.82rem;
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 600;
+            background: rgba(0, 0, 0, 0.25);
+            padding: 0.35rem 0.95rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        /* Gallery Grid - Responsive & Mobile Touch */
+        .gallery-main {
+            padding: 4.5rem 0 5.5rem;
+            background: var(--bg-main);
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+        @media (max-width: 1100px) {
+            .gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+        }
+        @media (max-width: 768px) {
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+        }
+        @media (max-width: 480px) {
+            .gallery-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+        }
+        .g-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--radius-lg);
+            aspect-ratio: 4/3;
+            cursor: pointer;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-card);
+            transition: all .35s ease;
+        }
+        .g-item:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent);
+            z-index: 2;
+        }
+        .g-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform .6s cubic-bezier(.25, 1, .5, 1);
+        }
+        .g-item:hover img {
+            transform: scale(1.08);
+        }
+        .g-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 30%, rgba(44, 24, 16, 0.9) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.35rem 1.25rem;
+            opacity: 0;
+            transition: opacity .3s ease;
+        }
+        .g-item:hover .g-overlay {
+            opacity: 1;
+        }
+        .g-cat {
+            font-size: .65rem;
+            font-weight: 800;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: .35rem;
+            background: rgba(255, 255, 255, .15);
+            backdrop-filter: blur(6px);
+            padding: .2rem .6rem;
+            border-radius: 50px;
+            width: fit-content;
+        }
+        .g-title {
+            color: #fff;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            line-height: 1.25;
+            margin-bottom: 0.2rem;
+        }
+        .g-sub {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.78rem;
+            line-height: 1.4;
+        }
+        .g-zoom {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .95);
+            backdrop-filter: blur(6px);
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .85rem;
+            opacity: 0;
+            transform: scale(.7);
+            transition: all .3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,.15);
+        }
+        .g-item:hover .g-zoom {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Mobile Touch Experience: Permanent Legibility on Touch Screens */
+        @media (max-width: 768px) {
+            .g-overlay {
+                opacity: 1 !important;
+                background: linear-gradient(180deg, transparent 40%, rgba(36, 20, 14, 0.88) 100%) !important;
+                padding: 1rem 0.9rem !important;
+            }
+            .g-zoom {
+                opacity: 1 !important;
+                transform: scale(1) !important;
+                top: 0.75rem !important;
+                right: 0.75rem !important;
+                width: 34px !important;
+                height: 34px !important;
+                font-size: 0.78rem !important;
+            }
+            .g-title {
+                font-size: 1rem !important;
+            }
+            .g-sub {
+                display: none;
+            }
+        }
+
+        /* TIMELINE SECTION (A DAY IN THE ATELIER) */
+        .timeline-section {
+            padding: 5rem 0;
+            background: var(--bg-alt);
+        }
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+        @media (max-width: 992px) {
+            .timeline-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+        }
+        @media (max-width: 580px) {
+            .timeline-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+        }
+        .timeline-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-xl);
+            border: 1.5px solid var(--border-subtle);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .timeline-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-hover);
+        }
+        .timeline-media {
+            aspect-ratio: 16/10;
+            overflow: hidden;
+            position: relative;
+        }
+        .timeline-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .timeline-card:hover .timeline-media img {
+            transform: scale(1.06);
+        }
+        .timeline-time-badge {
+            position: absolute;
+            top: 0.85rem;
+            left: 0.85rem;
+            background: var(--accent);
+            color: #fff;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 0.3rem 0.75rem;
+            border-radius: 50px;
+            letter-spacing: 0.05em;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .timeline-body {
+            padding: 1.5rem 1.35rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .timeline-step {
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 0.35rem;
+        }
+        .timeline-body h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+        .timeline-body p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        /* PHOTOGRAPHY GUIDE & PRESS DESK */
+        .policy-section {
+            padding: 4.5rem 0;
+            background: var(--bg-main);
+        }
+        .policy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+        @media (max-width: 900px) {
+            .policy-grid { grid-template-columns: 1fr; }
+        }
+        .policy-card {
+            background: var(--bg-card);
+            border: 1.5px solid var(--border-subtle);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+        .policy-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-card);
+        }
+        .policy-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: var(--accent-subtle);
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+        }
+        .policy-card h3 {
+            font-size: 1.25rem;
+            margin: 0;
+        }
+        .policy-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.65;
+            margin: 0;
+        }
+
+        /* REVIEWS / VOICES */
+        .reviews-section {
+            padding: 4.5rem 0;
+            background: var(--bg-alt);
+        }
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+        @media (max-width: 900px) {
+            .reviews-grid { grid-template-columns: 1fr; }
+        }
+        .review-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 2rem 1.75rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 1.25rem;
+            box-shadow: var(--shadow-card);
+        }
+        .review-stars {
+            color: #f59e0b;
+            font-size: 0.9rem;
+            display: flex;
+            gap: 0.2rem;
+        }
+        .review-text {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--text-main);
+            font-style: italic;
+        }
+        .review-author {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .review-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--accent-subtle);
+            color: var(--accent);
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.95rem;
+        }
+
+        /* Stats Banner */
+        .stats-banner{padding:4rem 0;background:var(--bg-main);border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle)}
+        .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;text-align:center}
+        @media(max-width:700px){.stats-row{grid-template-columns:repeat(2,1fr);gap:1rem}}
+        @media(max-width:480px){.stats-row{gap:0.75rem}}
+        .stat-val{font-family:'Playfair Display',serif;font-size:clamp(1.85rem,4vw,2.75rem);font-weight:700;color:var(--accent);line-height:1;margin-bottom:.5rem}
+        .stat-lbl{font-family:'Outfit',sans-serif;font-weight:800;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted)}
+
+        /* Lightbox - Touch Friendly */
+        .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:2000;display:flex;align-items:center;justify-content:center;padding:2rem;opacity:0;visibility:hidden;transition:opacity .3s}
+        .lightbox.active{opacity:1;visibility:visible}
+        .lightbox img{max-width:90vw;max-height:85vh;border-radius:var(--radius-lg);box-shadow:0 25px 60px rgba(0,0,0,.5);object-fit:contain}
+        .lb-close{position:absolute;top:1.5rem;right:1.5rem;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.18);color:#fff;border:none;font-size:1.25rem;cursor:pointer;transition:background .2s;display:flex;align-items:center;justify-content:center}
+        .lb-close:hover{background:rgba(255,255,255,.35)}
+        .lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.18);color:#fff;border:none;font-size:1.15rem;cursor:pointer;transition:background .2s;display:flex;align-items:center;justify-content:center}
+        .lb-nav:hover{background:rgba(255,255,255,.35)}
+        .lb-prev{left:1.5rem}.lb-next{right:1.5rem}
+        .lb-caption-wrap{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.7);padding:.6rem 1.5rem;border-radius:50px;backdrop-filter:blur(8px);display:flex;align-items:center;gap:0.75rem;max-width:90%;color:#fff}
+        .lb-caption{font-size:.9rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .lb-count{font-size:.75rem;opacity:.7;font-family:'Outfit',sans-serif;font-weight:700}
+        @media (max-width: 768px) {
+            .lightbox { padding: 1rem; }
+            .lightbox img { max-width: 95vw; max-height: 75vh; }
+            .lb-close { top: 1rem; right: 1rem; width: 42px; height: 42px; font-size: 1.1rem; }
+            .lb-nav { width: 42px; height: 42px; font-size: 1rem; }
+            .lb-prev { left: 0.5rem; }
+            .lb-next { right: 0.5rem; }
+            .lb-caption-wrap { bottom: 1rem; padding: 0.5rem 1rem; font-size: 0.8rem; }
+        }
+
+        /* CTA */
+        .gallery-cta{padding:5rem 0;background:linear-gradient(135deg,var(--accent) 0%,var(--accent-hover) 100%);text-align:center;color:#fff;position:relative;overflow:hidden}
+        .gallery-cta::before{content:'';position:absolute;top:-100px;right:-100px;width:350px;height:350px;border-radius:50%;background:rgba(255,255,255,.08);pointer-events:none}
+        .gallery-cta h2{font-size:clamp(1.75rem,5vw,2.75rem);color:#fff;margin-bottom:1rem;letter-spacing:-.025em}
+        .gallery-cta p{color:rgba(255,255,255,.9);font-size:1.05rem;max-width:560px;margin:0 auto 2rem;line-height:1.7}
+        .gallery-cta .btn-primary{background:#fff !important;color:var(--accent) !important;box-shadow:0 8px 25px rgba(0,0,0,.15)}
+        .gallery-cta .btn-primary span{color:var(--accent) !important;font-weight:800}
+        .gallery-cta .btn-primary .btn-icon-capsule{background:var(--accent-subtle) !important;color:var(--accent) !important}
+        .gallery-cta .btn-primary .btn-icon-capsule i{color:var(--accent) !important}
+        .gallery-cta .btn-primary:hover{background:#fdf6ef !important}
+        .gallery-cta .btn-secondary{background:transparent;color:#fff;border-color:rgba(255,255,255,.5)}
+        .gallery-cta .btn-secondary:hover{background:rgba(255,255,255,.1);border-color:#fff;color:#fff}
+        .gallery-cta-actions{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+        @media (max-width: 480px) {
+            .gallery-cta-actions {
+                flex-direction: column;
+            }
+            .gallery-cta-actions a {
+                width: 100% !important;
+                justify-content: center !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="navbar-container">
+    <div class="container navbar-flex">
+        <a href="index.html" class="logo">
+            <div class="logo-badge"><i class="fas fa-bread-slice"></i></div>
+            <div class="logo-text-block"><span class="logo-title">FLOUR<span>HOUSE</span></span><span class="logo-sub">ARTISAN BAKERY & PASTRY</span></div>
+        </a>
+        <nav class="desktop-nav">
+            <div class="home-dropdown" id="home-dropdown">
+                <button class="home-pill-btn" onclick="toggleDropdown()">Home <i class="fas fa-chevron-up" id="dropdown-chevron" style="font-size:.75rem"></i></button>
+                <div class="dropdown-menu" id="dropdown-menu"><a href="index.html" class="dropdown-item">Home 1</a><a href="home2.html" class="dropdown-item">Home 2</a></div>
+            </div>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="product.html" class="nav-link">Products</a>
+            <a href="custom.html" class="nav-link">Custom Orders</a>
+            <a href="pricing.html" class="nav-link">Pricing</a>
+            <a href="gallery.html" class="nav-link active">Gallery</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+        <div class="navbar-right">
+            <button class="circle-btn" id="theme-btn"><i class="fas fa-moon" id="theme-icon"></i></button>
+            <button class="circle-btn" id="rtl-btn"><i class="fas fa-exchange-alt"></i></button>
+            <a href="contact.html" class="visit-store-btn"><i class="fas fa-map-marker-alt"></i> Visit Bakery</a>
+        </div>
+        <button class="mobile-toggle" id="open-drawer"><i class="fas fa-bars"></i></button>
+    </div>
+</header>
+<div class="mobile-backdrop" id="mobile-backdrop"></div>
+<div class="mobile-drawer" id="mobile-drawer">
+    <div class="mobile-menu-header">
+        <div class="logo"><div class="logo-badge"><i class="fas fa-bread-slice"></i></div><div class="logo-text-block"><span class="logo-title">FLOUR<span>HOUSE</span></span><span class="logo-sub">BAKERY & PASTRY</span></div></div>
+        <button id="close-drawer" style="background:none;border:none;font-size:1.5rem;color:var(--text-main);cursor:pointer"><i class="fas fa-times"></i></button>
+    </div>
+    <div style="background:var(--accent-subtle);border:1.5px solid var(--accent);padding:.85rem;border-radius:14px;margin-bottom:1.5rem">
+        <span style="font-size:.75rem;font-weight:800;color:var(--accent);text-transform:uppercase;display:block;margin-bottom:.5rem">Select Homepage:</span>
+        <div style="display:flex;gap:.5rem">
+            <a href="index.html" style="flex:1;text-align:center;background:var(--bg-card);color:var(--text-main);border:1px solid var(--border-subtle);padding:.5rem;border-radius:8px;font-weight:700;font-size:.85rem">Home 1</a>
+            <a href="home2.html" style="flex:1;text-align:center;background:var(--bg-card);color:var(--text-main);border:1px solid var(--border-subtle);padding:.5rem;border-radius:8px;font-weight:700;font-size:.85rem">Home 2</a>
+        </div>
+    </div>
+    <ul class="mobile-links">
+        <li><a href="about.html" class="mobile-link-item" onclick="closeDrawer()">About</a></li>
+        <li><a href="product.html" class="mobile-link-item" onclick="closeDrawer()">Products</a></li>
+        <li><a href="custom.html" class="mobile-link-item" onclick="closeDrawer()">Custom Orders</a></li>
+        <li><a href="pricing.html" class="mobile-link-item" onclick="closeDrawer()">Pricing</a></li>
+        <li><a href="gallery.html" class="mobile-link-item active" onclick="closeDrawer()">Gallery</a></li>
+        <li><a href="contact.html" class="mobile-link-item" onclick="closeDrawer()">Contact</a></li>
+    </ul>
+    <div style="display:flex;flex-direction:column;gap:.75rem;border-top:1px solid var(--border-subtle);padding-top:1.5rem">
+        <button onclick="toggleTheme()" class="btn-secondary" style="width:100%;justify-content:center"><i class="fas fa-adjust"></i> Dark / Light Mode</button>
+        <button onclick="toggleDirection()" class="btn-secondary" style="width:100%;justify-content:center"><i class="fas fa-exchange-alt"></i> Toggle RTL</button>
+        <a href="contact.html" class="visit-store-btn" onclick="closeDrawer()" style="width:100%;justify-content:center"><i class="fas fa-map-marker-alt"></i> Visit Bakery</a>
+    </div>
+</div>
+
+<!-- HERO -->
+<section class="gallery-hero">
+    <div class="container">
+        <span class="eyebrow"><i class="fas fa-camera"></i> Atelier Visual Anthology · FlourHouse</span>
+        <h1>A Peek Inside <em>Our Hearth</em></h1>
+        <p>Flour-dusted prep tables, golden morning bakes, and hand-finished pastry details — captured in their most honest, dawn-lit moments.</p>
+        <div class="gallery-filters">
+            <button class="filter-tab active" data-filter="all">All Photos <span class="tab-badge">24</span></button>
+            <button class="filter-tab" data-filter="breads">Artisan Breads <span class="tab-badge">6</span></button>
+            <button class="filter-tab" data-filter="pastries">French Viennoiserie <span class="tab-badge">6</span></button>
+            <button class="filter-tab" data-filter="cakes">Haute Patisserie <span class="tab-badge">6</span></button>
+            <button class="filter-tab" data-filter="bakery">Atelier & Hearth <span class="tab-badge">6</span></button>
+        </div>
+        <div class="gallery-counter-bar">
+            <i class="fas fa-images" style="color: var(--accent);"></i>
+            <span id="photo-counter">Showing all 24 atelier photographs</span>
+        </div>
+    </div>
+</section>
+
+<!-- MAIN PHOTO SHOWCASE (24 100% UNIQUE ARTISAN MOMENTS) -->
+<section class="gallery-main" id="gallery-grid-section">
+    <div class="container">
+        <div class="gallery-grid" id="masonry-grid">
+            <!-- 1. Breads -->
+            <div class="g-item" data-cat="breads">
+                <img src="https://images.unsplash.com/photo-1509722747041-616f39b57569?q=80&w=800&auto=format&fit=crop" alt="Signature country sourdough">
+                <div class="g-overlay">
+                    <div class="g-cat">Breads</div>
+                    <div class="g-title">Signature Country Sourdough</div>
+                    <div class="g-sub">Rustic Stone Hearth Boules · 36h Wild Levain</div>
+                </div>
+                <div class="g-zoom"><i class="fas fa-expand"></i></div>
+            </div>
+
+            <!-- 2. Pastries -->
+            <div class="g-item" data-cat="pastries">
+                <img src="https://images.unsplash.com/photo-1523294587484-bae6cc870010?q=80&w=800&auto=format&fit=crop" alt="27-layer butter croissants">
+                <div class="g-overlay">
+                    <div class="g-cat">Pastries</div>
+                    <div class="g-title">27-Layer Isigny Croissant</div>
+                    <div class="g-sub">Normandy Cultured Butter · Honeycomb Voids</div>
+                </div>
+                <div class="g-zoom"><i class="fas fa-expand"></i></div>
+            </div>
+
+            <!-- 3. Cakes -->
+            <div class="g-item" data-cat="cakes">
+                <img src="https://images.unsplash.com/photo-1579372786545-d24232daf58c?q=80&w=800&auto=format&fit=crop" alt="Tahitian vanilla layered cake">
+                <div class="g-overlay">
+                    <div class="g-cat">Cakes</div>
+                    <div class="g-title">Tahitian Vanilla Velvet Cake</div>
+                    <div class="g-sub">Mascarpone Cream · Edible Gold Leaf</div>
+                </div>
+                <div class="g-zoom"><i class="fas fa-expand"></i></div>
+            </div>
+
+            <!-- 4. Bakery -->
+            <div class="g-item" data-cat="bakery">
+                <img src="https://images.unsplash.com/photo-1534432182912-63863115e106?q=80&w=800&auto=format&fit=crop" alt="Dawn bread display shelves">
+                <div class="g-overlay">
+                    <div class="g-cat">Bakery</div>
+                    <div class="g-title">Dawn Hearth Bread Display</div>
+                    <div class="g-sub">Natural Cedar Display Shelves at 07:00 AM</div>
+                </div>
+                <div class="g-zoom"><i class="fas fa-expand"></i></div>
+            </div>
+
+            <!-- 5. Bakery -->
+            <div class="g-item" data-cat="bakery">
+                <img src="https://images.unsplash.com/photo-1586769852044-692d6e3703f0?q=80&w=800&auto=format&fit=crop" alt="Front hearth parlor counter">
+                <div class="g-overlay">
+                    <div class="g-cat">Bakery</div>
+                    <div class="g-title">Front Hearth Parlor Counter</div>
+                    <div class="g-sub">Morning Bake Cases & Warm Light</div>
+                </div>
+                <div class="g-zoom"><i class="fas fa-expand"></i></div>
+            </div>
+
+            <!-- 6. Pastries -->
+            <div class="g-item" data-cat="pastries">
+                <img src="https://images.unsplash.com/photo-1505253758473-96b7015fcd40?q=80&w=800&auto=format&fit=crop" alt="Golden viennoiserie platter">
+                <div class="g-overlay">
+                    <div class="g-cat">Pastries</div>
+                    <div class="g-title">Golden Viennoiserie Platter</div>
+                    <div class="g-sub">Flaky French Morning Butter Selection</div>
+                </div>
+                <div class="g-zoom"><i class="fas fa-expand"></i></div>
+            </div>
+
+            <!-- 7. Breads -->
+            <div class="g-item" data-cat="breads">
+                <img src="https://images.unsplash.com/photo-1605807646983-377bc5a76493?q=80&w=800&auto=format&fit=crop" alt="Einkorn heritage sourdough">
+                <div class="g-overlay">
+                    <div class="g-cat">Breads</div>
+                    <div class="g-title">Einkorn Heritage Sourdough</div>
+                    <div class="g-sub">Deep Blistered Ear & Dark Roasted Crust</div>
+                </div>
+                <div class="g-zoom"><i class="fas fa-expand"></i></div>
+            </div>
+
+            <!-- 8. Cakes -->
+            <div class="g-item" data-cat="cakes">
+                <img src="https://images.unsplash.com/photo-1562440499-64c9a111f713?q=80&w=800&auto=format&fit=crop" alt="Wild strawberry fraisier">
+                <div class="g-overlay">
+                    <div class="g-cat">Cakes</div>
+                    <div class="g-title">Wild Strawberry Fraisier Tier</div>
+                    <div class="g-sub">Berry Compote · Light Diplomat Mousseline</div>
+                </div>
+                <div class="g-zoom"><i class="fas fa-expand"></i></div>
+            </div>
+
+            <!-- 9. Pastries -->
+            <div class="g-item" data-cat="pastries">
+                <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?q=80&w=800&auto=format&fit=crop" alt="Pain au chocolat feuilletee">
+                <div class="g-overlay">
+                    <div class="g-cat">Pastries</div>
+                    <div class="g-title">Pain au Chocolat Feuilletée</div>
+                    <div class="g-sub">Double French Dark Valrhona Batons</div>
+                </div>
+                <div class="g-zoom"><i class="fas fa-expand"></i></div>
+            </div>
+
+            <!-- 10. Breads -->
+            <div class="g-item" data-cat="breads">
+                <img src="https://images.unsplash.com/photo-1508737027454-e6454ef45afd?q=80&w=800&auto=format&fit=crop" alt="Scorched tradition baguette">
+                <div class="g-overlay">
+                    <div class="g-cat">Breads</div>
+                    <div class="g-title">Scorched Tradition Baguettes</div>
+                    <div class="g-sub">Thin Crisp Crust & Resonant Hollow Sound</div>
+                </div>
+                <div class="g-zoom"><i class="fas fa-expand"></i></div>
+            </div>
+
+            <!-- 11. Bakery -->
+            <div class="g-item" data-cat="bakery">
+                <img src="https://images.unsplash.com/photo-1573821663912-569905455b1c?q=80&w=800&auto=format&fit=crop" alt="Flour dusting and kneading hands">
+                <div class="g-overlay">
+                    <div class="g-cat">Bakery</div>
+                    <div class="g-title">Flour Dusting & Hand Kneading</div>
+                    <div class="g-sub">Head Baker Working High-Hydration Levain</div>
+                </div>
+                <div class="g-zoom"><i class="fas fa-expand"></i></div>
+            </div>
+
+            <!-- 12. Cakes -->
+            <div class="g-item" data-cat="cakes">
+                <img src="https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?q=80&w=800&auto=format&fit=crop" alt="Bronte pistachio rose cake">
+                <div class="g-overlay">
+                    <div class="g-cat">Cakes</div>
+                    <div class="g-title">Bronte Pistachio & Rose Petals</div>
+                    <div class="g-sub">Sicilian Nut Sponge · Crystallized Botanicals</div>
+                </div>
+                <div class="g-zoom"><i class="fas fa-expand"></i></div>
+            </div>
+
+            <!-- 13. Bakery -->
+            <div class="g-item" data-cat="bakery">
+                <img src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?q=80&w=800&auto=format&fit=crop" alt="Volcanic hearth deck oven glow">
+                <div class="g-overlay">
+                    <div class="g-cat">Bakery</div>
+                    <div class="g-title">Volcanic Hearth Deck Oven Glow</div>
+                    <div class="g-sub">Stone Deck Hearth Baking at 480°F with Steam</div>
+                </div>
+                <div class="g-zoom"><i class="fas fa-expand"></i></div>
+            </div>
+
+            <!-- 14. Pastries -->
+            <div class="g-item" data-cat="pastries">
+                <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?q=80&w=800&auto=format&fit=crop" alt="Scandinavian cardamom knots">
+                <div class="g-overlay">
+                    <div class="g-cat">Pastries</div>
+                    <div class="g-title">Scandinavian Cardamom Knots</div>
+                    <div class="g-sub">Coarse Crushed Cardamom · Pearl Sugar</div>
+                </div>
+                <div class="g-zoom"><i class="fas fa-expand"></i></div>
+            </div>
+
+            <!-- 15. Cakes -->
+            <div class="g-item" data-cat="cakes">
+                <img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?q=80&w=800&auto=format&fit=crop" alt="Dark Valrhona opera ganache">
+                <div class="g-overlay">
+                    <div class="g-cat">Cakes</div>
+                    <div class="g-title">Dark Valrhona Opera Ganache</div>
+                    <div class="g-sub">70% Guanaja Chocolate Mirror Glaze</div>
+                </div>
+                <div class="g-zoom"><i class="fas fa-expand"></i></div>
+            </div>
+
+            <!-- 16. Breads -->
+            <div class="g-item" data-cat="breads">
+                <img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?q=80&w=800&auto=format&fit=crop" alt="Seeded spelt boule">
+                <div class="g-overlay">
+                    <div class="g-cat">Breads</div>
+                    <div class="g-title">Seeded Spelt & Rye Boule</div>
+                    <div class="g-sub">Toasted Organic Sunflower & Pumpkin Seeds</div>
+                </div>
+                <div class="g-zoom"><i class="fas fa-expand"></i></div>
+            </div>
+
+            <!-- 17. Cakes -->
+            <div class="g-item" data-cat="cakes">
+                <img src="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?q=80&w=800&auto=format&fit=crop" alt="Minimalist botanical wedding tier">
+                <div class="g-overlay">
+                    <div class="g-cat">Cakes</div>
+                    <div class="g-title">Botanical Wedding Celebration Tier</div>
+                    <div class="g-sub">Pressed Edible Flowers · Silk Swiss Buttercream</div>
+                </div>
+                <div class="g-zoom"><i class="fas fa-expand"></i></div>
+            </div>
+
+            <!-- 18. Pastries -->
+            <div class="g-item" data-cat="pastries">
+                <img src="https://images.unsplash.com/photo-1552611052-33e04de081de?q=80&w=800&auto=format&fit=crop" alt="Braided Normandy brioche">
+                <div class="g-overlay">
+                    <div class="g-cat">Pastries</div>
+                    <div class="g-title">Braided Normandy Brioche</div>
+                    <div class="g-sub">Rich Cultured Butter Crumb · Golden Glaze</div>
+                </div>
+                <div class="g-zoom"><i class="fas fa-expand"></i></div>
+            </div>
+
+            <!-- 19. Bakery -->
+            <div class="g-item" data-cat="bakery">
+                <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=800&auto=format&fit=crop" alt="Courtyard greenhouse salon">
+                <div class="g-overlay">
+                    <div class="g-cat">Bakery</div>
+                    <div class="g-title">The Courtyard Greenhouse Salon</div>
+                    <div class="g-sub">Sunlit Morning Coffee & Pastry Tables</div>
+                </div>
+                <div class="g-zoom"><i class="fas fa-expand"></i></div>
+            </div>
+
+            <!-- 20. Breads -->
+            <div class="g-item" data-cat="breads">
+                <img src="https://images.unsplash.com/photo-1587241321921-91a834d6d191?q=80&w=800&auto=format&fit=crop" alt="Razor-scored batard">
+                <div class="g-overlay">
+                    <div class="g-cat">Breads</div>
+                    <div class="g-title">Artisan Leaf Scored Batard</div>
+                    <div class="g-sub">Hand-Carved Flour Scoring Patterns</div>
+                </div>
+                <div class="g-zoom"><i class="fas fa-expand"></i></div>
+            </div>
+
+            <!-- 21. Pastries -->
+            <div class="g-item" data-cat="pastries">
+                <img src="https://images.unsplash.com/photo-1511018556340-d16986a1c194?q=80&w=800&auto=format&fit=crop" alt="Caneles de Bordeaux">
+                <div class="g-overlay">
+                    <div class="g-cat">Pastries</div>
+                    <div class="g-title">French Canelés de Bordeaux</div>
+                    <div class="g-sub">Copper Mold Beeswax Crust · Custard Core</div>
+                </div>
+                <div class="g-zoom"><i class="fas fa-expand"></i></div>
+            </div>
+
+            <!-- 22. Cakes -->
+            <div class="g-item" data-cat="cakes">
+                <img src="https://images.unsplash.com/photo-1519340333755-56e9c1d04579?q=80&w=800&auto=format&fit=crop" alt="French macaron crown tier">
+                <div class="g-overlay">
+                    <div class="g-cat">Cakes</div>
+                    <div class="g-title">French Macaron Crown Tier</div>
+                    <div class="g-sub">California Almond Flour · Seasonal Fruit Curds</div>
+                </div>
+                <div class="g-zoom"><i class="fas fa-expand"></i></div>
+            </div>
+
+            <!-- 23. Bakery -->
+            <div class="g-item" data-cat="bakery">
+                <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=800&auto=format&fit=crop" alt="Single-origin espresso pairing">
+                <div class="g-overlay">
+                    <div class="g-cat">Bakery</div>
+                    <div class="g-title">Single-Origin Espresso Pairing</div>
+                    <div class="g-sub">Light-Roast Single-Origin · Hearth Atmosphere</div>
+                </div>
+                <div class="g-zoom"><i class="fas fa-expand"></i></div>
+            </div>
+
+            <!-- 24. Breads -->
+            <div class="g-item" data-cat="breads">
+                <img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?q=80&w=800&auto=format&fit=crop" alt="Rustic miche loaf">
+                <div class="g-overlay">
+                    <div class="g-cat">Breads</div>
+                    <div class="g-title">Ancient Spelt Miche Boule</div>
+                    <div class="g-sub">Coarse Stone-Milled Spelt & Natural Levain</div>
+                </div>
+                <div class="g-zoom"><i class="fas fa-expand"></i></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 2: CHRONICLE OF CRAFT (A DAY IN THE ATELIER) -->
+<section class="timeline-section">
+    <div class="container">
+        <div class="section-head-center">
+            <span class="section-badge"><i class="fas fa-clock"></i> Dawn to Dusk Narrative</span>
+            <h2 class="section-title-main">A Day in the Hearth: Four Defining Rituals</h2>
+            <p class="section-desc-main">Before the neighborhood wakes, our bakers follow ancient rhythms of fermentation, steam, and stone. Follow the transformation of ancient grains into living food.</p>
+        </div>
+
+        <div class="timeline-grid">
+            <!-- Step 1 -->
+            <div class="timeline-card">
+                <div class="timeline-media">
+                    <img src="https://images.unsplash.com/photo-1546549032-9571cd6b27df?q=80&w=700&auto=format&fit=crop" alt="Stone milling at dawn">
+                    <span class="timeline-time-badge">04:30 AM</span>
+                </div>
+                <div class="timeline-body">
+                    <span class="timeline-step">Ritual #01 · Awakening</span>
+                    <h3>Stone Milling & Levain Feeding</h3>
+                    <p>Heirloom Einkorn and Khorasan wheat are freshly stone-ground on site. Our 100-year-old sourdough starter is fed pure water and aerated for morning fermentation.</p>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="timeline-card">
+                <div class="timeline-media">
+                    <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?q=80&w=700&auto=format&fit=crop" alt="French butter lamination">
+                    <span class="timeline-time-badge">06:15 AM</span>
+                </div>
+                <div class="timeline-body">
+                    <span class="timeline-step">Ritual #02 · Lamination</span>
+                    <h3>27-Fold French Butter Sheeting</h3>
+                    <p>Normandy dry butter is sheeted at precise 16°C between fermented dough layers. Three geometric letter turns create the crisp micro-layers of our signature viennoiserie.</p>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="timeline-card">
+                <div class="timeline-media">
+                    <img src="https://images.unsplash.com/photo-1525607551316-4a8e16d1f9ba?q=80&w=700&auto=format&fit=crop" alt="Stone hearth pull">
+                    <span class="timeline-time-badge">07:00 AM</span>
+                </div>
+                <div class="timeline-body">
+                    <span class="timeline-step">Ritual #03 · Hearth Pull</span>
+                    <h3>The Dawn Stone Hearth Release</h3>
+                    <p>Scored with razor blades, the proofed boules enter our 480°F basalt deck ovens. High-pressure steam envelops the crust, yielding dark blistered ears and singing crackles.</p>
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="timeline-card">
+                <div class="timeline-media">
+                    <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?q=80&w=700&auto=format&fit=crop" alt="Patisserie finish">
+                    <span class="timeline-time-badge">10:30 AM</span>
+                </div>
+                <div class="timeline-body">
+                    <span class="timeline-step">Ritual #04 · Patisserie</span>
+                    <h3>Botanical Cake Sculpting</h3>
+                    <p>Our pastry chefs hand-pipe Tahitian diplomat creams, temper Valrhona dark chocolates, and adorn celebratory cakes with organic flowers sourced from regional farms.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 5: VISITOR GUIDE & PHOTOGRAPHY POLICY -->
+<section class="policy-section">
+    <div class="container">
+        <div class="section-head-center">
+            <span class="section-badge"><i class="fas fa-camera-retro"></i> Atelier Etiquette</span>
+            <h2 class="section-title-main">Visiting & Photographing Our Baking Studio</h2>
+            <p class="section-desc-main">We believe artisanal baking is living performance art. Here is helpful guidance for photographing your experience at FlourHouse.</p>
+        </div>
+
+        <div class="policy-grid">
+            <div class="policy-card">
+                <div class="policy-icon"><i class="fas fa-mobile-alt"></i></div>
+                <h3>Casual & Guest Photography</h3>
+                <p>Smartphone photography and personal videos are warmly encouraged throughout our front parlor, bread counters, and courtyard tables. Feel free to capture the bread pulling rituals from the viewing windows.</p>
+            </div>
+
+            <div class="policy-card">
+                <div class="policy-icon"><i class="fas fa-sun"></i></div>
+                <h3>Golden Morning Light Hours</h3>
+                <p>The natural northern skylight in our salon is most vibrant between <strong>08:00 AM and 10:30 AM</strong>. If you love photographing pastry textures and coffee steam, this is the most picturesque window.</p>
+            </div>
+
+            <div class="policy-card">
+                <div class="policy-icon"><i class="fas fa-video"></i></div>
+                <h3>Commercial & Editorial Shoots</h3>
+                <p>We host cookbook photography, wedding cake tastings, and editorial press shoots on Mondays when our main hearth is resting. Please contact our atelier desk in advance to reserve private studio hours.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 6: VOICES OF THE HEARTH (TESTIMONIALS) -->
+<section class="reviews-section">
+    <div class="container">
+        <div class="section-head-center">
+            <span class="section-badge"><i class="fas fa-comment-dots"></i> Guest Impressions</span>
+            <h2 class="section-title-main">What Guests Say About Our Visual Craft</h2>
+            <p class="section-desc-main">The aroma pulls you in; the visual artistry and honest sourdough flavors keep you coming back every morning.</p>
+        </div>
+
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"Walking into FlourHouse at dawn is like stepping into an editorial photo spread in rural France. The sourdough ear crackles when you tap it, and the pastry laminations are textbook perfection."</p>
+                </div>
+                <div class="review-author">
+                    <div class="review-avatar">CG</div>
+                    <div>
+                        <strong style="display: block; font-size: 0.95rem;">Camille Girard</strong>
+                        <span style="font-size: 0.78rem; color: var(--text-muted);">Food & Wine Critic</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <div>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"The photos on the gallery don't even do justice to the morning aroma. The pistachio rose cake they made for our daughter's milestone birthday was both breathtaking to look at and divine to eat."</p>
+                </div>
+                <div class="review-author">
+                    <div class="review-avatar">DW</div>
+                    <div>
+                        <strong style="display: block; font-size: 0.95rem;">David & Helen Wright</strong>
+                        <span style="font-size: 0.78rem; color: var(--text-muted);">Neighborhood Regulars</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <div>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"As a wedding planner, finding a bakery that delivers both high-concept visual elegance and unbelievable taste is rare. FlourHouse is our absolute go-to recommendation for botanical celebration cakes."</p>
+                </div>
+                <div class="review-author">
+                    <div class="review-avatar">AL</div>
+                    <div>
+                        <strong style="display: block; font-size: 0.95rem;">Amara Lin</strong>
+                        <span style="font-size: 0.78rem; color: var(--text-muted);">Lead Event Designer</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-banner">
+    <div class="container">
+        <div class="stats-row">
+            <div><div class="stat-val">12+</div><div class="stat-lbl">Years Baking</div></div>
+            <div><div class="stat-val">800+</div><div class="stat-lbl">Loaves Weekly</div></div>
+            <div><div class="stat-val">2,000+</div><div class="stat-lbl">Pastries Daily</div></div>
+            <div><div class="stat-val">4.9★</div><div class="stat-lbl">Average Rating</div></div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="gallery-cta">
+    <div class="container">
+        <span class="eyebrow" style="background:rgba(255,255,255,.15);color:#fff"><i class="fas fa-heart"></i> Come Taste the Art</span>
+        <h2>Every Photo Tells a Story</h2>
+        <p>The best way to experience FlourHouse is to visit us in person. Stop by for a warm loaf, a single-origin espresso, and a conversation.</p>
+        <div class="gallery-cta-actions">
+            <a href="contact.html" class="btn-primary">
+                <span>Find Our Bakery</span>
+                <div class="btn-icon-capsule"><i class="fas fa-map-marker-alt"></i></div>
+            </a>
+            <a href="product.html" class="btn-secondary">
+                <i class="fas fa-bread-slice"></i> Browse Menu
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- TOUCH-FRIENDLY LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+    <button class="lb-close" onclick="closeLightbox()" aria-label="Close Lightbox"><i class="fas fa-times"></i></button>
+    <button class="lb-nav lb-prev" onclick="navLightbox(-1)" aria-label="Previous Image"><i class="fas fa-chevron-left"></i></button>
+    <button class="lb-nav lb-next" onclick="navLightbox(1)" aria-label="Next Image"><i class="fas fa-chevron-right"></i></button>
+    <img id="lb-img" src="" alt="Gallery full size">
+    <div class="lb-caption-wrap">
+        <span class="lb-caption" id="lb-caption"></span>
+        <span class="lb-count" id="lb-count"></span>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <a href="index.html" class="logo" style="margin-bottom:1rem;display:inline-flex">
+                    <div class="logo-badge"><i class="fas fa-bread-slice"></i></div>
+                    <div class="logo-text-block"><span class="logo-title">FLOUR<span>HOUSE</span></span><span class="logo-sub">ARTISAN BAKERY & PASTRY</span></div>
+                </a>
+                <p style="color:var(--text-muted);font-size:.95rem;line-height:1.7;max-width:320px">Handcrafted sourdoughs, French viennoiserie, and celebration cakes baked fresh at dawn every single morning.</p>
+            </div>
+            <div>
+                <h4>Quick Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home 1 (Artisan Hearth)</a></li>
+                    <li><a href="home2.html">Home 2 (Parisian Atelier)</a></li>
+                    <li><a href="about.html">About Our Craft</a></li>
+                    <li><a href="product.html">Daily Bakes Menu</a></li>
+                    <li><a href="gallery.html" style="color:var(--accent);font-weight:700">Photo Gallery</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Specialties</h4>
+                <ul>
+                    <li><a href="product.html">Artisan Breads & Pastries</a></li>
+                    <li><a href="custom.html">Custom Celebration Cakes</a></li>
+                    <li><a href="pricing.html">Weekly Bread Club</a></li>
+                    <li><a href="contact.html">Store Hours & Location</a></li>
+                    <li><a href="contact.html">Inquiries & Bulk Orders</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Join Dawn Gazette</h4>
+                <p style="color:var(--text-muted);font-size:.9rem;margin-bottom:1rem">Receive weekend secret bake releases, seasonal tarts, and sourdough recipe tips.</p>
+                <form onsubmit="handleGazetteSubmit(event)" style="display:flex;gap:.5rem">
+                    <input type="email" placeholder="Your email address" class="form-input" required>
+                    <button type="submit" class="btn-primary" style="padding:.6rem 1rem"><i class="fas fa-arrow-right"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-copyright">© 2026 FLOURHOUSE Artisan Bakery & Pastry Shop. All rights reserved. Handcrafted with passion.</div>
+    </div>
+</footer>
+
+<div class="toast-msg" id="toast-msg">
+    <i class="fas fa-check-circle" style="color:var(--accent);font-size:1.25rem"></i>
+    <span id="toast-text">Welcome!</span>
+</div>
+
+<script>
+    function toggleDropdown(){const dd=document.getElementById('home-dropdown');const ch=document.getElementById('dropdown-chevron');dd.classList.toggle('active');if(ch)ch.className=dd.classList.contains('active')?'fas fa-chevron-down':'fas fa-chevron-up';}
+    document.addEventListener('click',function(e){const dd=document.getElementById('home-dropdown');if(dd&&!dd.contains(e.target)){dd.classList.remove('active');const ch=document.getElementById('dropdown-chevron');if(ch)ch.className='fas fa-chevron-up';}});
+    const drawer=document.getElementById('mobile-drawer'),backdrop=document.getElementById('mobile-backdrop');
+    if(document.getElementById('open-drawer'))document.getElementById('open-drawer').onclick=()=>{drawer.classList.add('active');backdrop.classList.add('active');};
+    if(document.getElementById('close-drawer'))document.getElementById('close-drawer').onclick=()=>{drawer.classList.remove('active');backdrop.classList.remove('active');};
+    if(backdrop)backdrop.onclick=()=>{drawer.classList.remove('active');backdrop.classList.remove('active');};
+    function closeDrawer(){if(drawer)drawer.classList.remove('active');if(backdrop)backdrop.classList.remove('active');}
+    function toggleTheme(){const h=document.documentElement;const n=(h.getAttribute('data-theme')||'light')==='dark'?'light':'dark';h.setAttribute('data-theme',n);localStorage.setItem('fh_theme',n);updateThemeIcon(n);showToast('Switched to '+n.toUpperCase()+' mode');}
+    function updateThemeIcon(t){const i=document.getElementById('theme-icon');if(i)i.className=t==='dark'?'fas fa-sun':'fas fa-moon';}
+    function toggleDirection(){const h=document.documentElement;const n=(h.getAttribute('dir')||'ltr')==='rtl'?'ltr':'rtl';h.setAttribute('dir',n);localStorage.setItem('fh_dir',n);showToast('Direction set to '+n.toUpperCase());}
+    (function(){const t=localStorage.getItem('fh_theme');if(t){document.documentElement.setAttribute('data-theme',t);updateThemeIcon(t);}const d=localStorage.getItem('fh_dir');if(d)document.documentElement.setAttribute('dir',d);})();
+    function showToast(m){const t=document.getElementById('toast-msg'),x=document.getElementById('toast-text');if(x)x.textContent=m;if(t){t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3200);}}
+    function handleGazetteSubmit(e){e.preventDefault();showToast('Welcome to the Dawn Gazette!');e.target.reset();}
+    document.getElementById('theme-btn').onclick=toggleTheme;
+    document.getElementById('rtl-btn').onclick=toggleDirection;
+
+    // Filter with Dynamic Counter
+    document.querySelectorAll('.filter-tab').forEach(tab=>{
+        tab.onclick=()=>{
+            document.querySelectorAll('.filter-tab').forEach(t=>t.classList.remove('active'));
+            tab.classList.add('active');
+            const f=tab.getAttribute('data-filter');
+            let count = 0;
+            document.querySelectorAll('.g-item').forEach(item=>{
+                const match = (f==='all'||item.getAttribute('data-cat')===f);
+                item.style.display = match ? '' : 'none';
+                if (match) count++;
+            });
+            const counter = document.getElementById('photo-counter');
+            if (counter) {
+                const label = tab.childNodes[0].textContent.trim();
+                counter.textContent = f === 'all' ? `Showing all ${count} atelier photographs` : `Showing ${count} ${label} photographs`;
+            }
+        };
+    });
+
+    // Lightbox with Touch/Swipe and Index Counter
+    let lbItems=[],lbIndex=0;
+    function openLightbox(items,idx){
+        lbItems=items;lbIndex=idx;
+        const lb=document.getElementById('lightbox');
+        updateLightboxView();
+        lb.classList.add('active');
+    }
+    function updateLightboxView(){
+        if (!lbItems.length) return;
+        const item=lbItems[lbIndex];
+        const img=item.querySelector('img');
+        const title=item.querySelector('.g-title')?.textContent || 'FlourHouse Atelier';
+        const sub=item.querySelector('.g-sub')?.textContent || '';
+        document.getElementById('lb-img').src=img.src;
+        document.getElementById('lb-caption').textContent=sub ? `${title} · ${sub}` : title;
+        const countEl=document.getElementById('lb-count');
+        if (countEl) countEl.textContent = `${lbIndex + 1} / ${lbItems.length}`;
+    }
+    function closeLightbox(){document.getElementById('lightbox').classList.remove('active');}
+    function navLightbox(dir){
+        lbIndex=(lbIndex+dir+lbItems.length)%lbItems.length;
+        updateLightboxView();
+    }
+    document.querySelectorAll('.g-item').forEach((item)=>{
+        item.onclick=()=>{
+            const visible=[...document.querySelectorAll('.g-item')].filter(x=>x.style.display!=='none');
+            openLightbox(visible,visible.indexOf(item));
+        };
+    });
+    document.addEventListener('keydown',e=>{
+        if(!document.getElementById('lightbox').classList.contains('active'))return;
+        if(e.key==='Escape')closeLightbox();
+        if(e.key==='ArrowLeft')navLightbox(-1);
+        if(e.key==='ArrowRight')navLightbox(1);
+    });
+    document.getElementById('lightbox').onclick=e=>{if(e.target.id==='lightbox')closeLightbox();};
+
+    // Robust Image Fallback Handler for all gallery photos
+    document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('error', function() {
+            this.src = 'https://images.unsplash.com/photo-1520072959219-c595dc870360?q=80&w=800&auto=format&fit=crop';
+        });
+    });
+</script>
+
+</body>
+</html>

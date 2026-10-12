@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FlourHouse Custom Cake Studio – Bespoke celebration, wedding, and birthday cakes designed by hand for your moment.">
+    <title>FLOURHOUSE | Custom Celebration Cakes</title>
+    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥐</text></svg>" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* CUSTOM PAGE UNIQUE STYLES */
+        .custom-hero {
+            padding: 5.5rem 0 4.5rem;
+            background: linear-gradient(180deg, rgba(36, 20, 14, 0.72) 0%, rgba(36, 20, 14, 0.84) 100%),
+                        url('https://images.unsplash.com/photo-1486427944299-d1955d23e34d?q=80&w=1600&auto=format&fit=crop') center 45% / cover no-repeat;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+        }
+        .custom-hero .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.16);
+            color: #fff;
+            padding: 0.4rem 0.95rem;
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(8px);
+        }
+        .custom-hero h1 {
+            font-size: clamp(1.85rem, 6vw, 3.5rem);
+            letter-spacing: -0.03em;
+            margin-bottom: 1rem;
+            color: #fff !important;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        .custom-hero h1 em {
+            font-style: italic;
+            color: var(--accent-secondary) !important;
+            font-weight: 600;
+        }
+        .custom-hero p {
+            color: rgba(255, 255, 255, 0.92);
+            max-width: 640px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        /* Process Steps */
+        .process-section{padding:4.5rem 0;background:var(--bg-main)}
+        .section-head-center{text-align:center;max-width:620px;margin:0 auto 3rem}
+        .section-title-main{font-size:clamp(1.75rem,3.5vw,2.35rem);letter-spacing:-.025em;margin-bottom:.75rem}
+        .section-desc-main{color:var(--text-muted);font-size:1rem;line-height:1.7}
+        .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;position:relative}
+        @media(max-width:900px){.process-grid{grid-template-columns:repeat(2,1fr)}}
+        @media(max-width:520px){.process-grid{grid-template-columns:1fr}}
+        .process-card{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:1.75rem 1.5rem;text-align:center;transition:all .3s}
+        .process-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-hover);border-color:var(--accent)}
+        .process-num{width:56px;height:56px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;margin:0 auto 1rem;box-shadow:0 8px 20px -5px rgba(200,149,108,.4)}
+        .process-card h3{font-size:1.15rem;margin-bottom:.5rem}
+        .process-card p{font-size:.85rem;color:var(--text-muted);line-height:1.6}
+        /* Cake Styles Grid */
+        .styles-section{padding:4.5rem 0;background:var(--bg-alt)}
+        .styles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+        @media(max-width:900px){.styles-grid{grid-template-columns:repeat(2,1fr)}}
+        @media(max-width:560px){.styles-grid{grid-template-columns:1fr}}
+        .style-card{background:var(--bg-card);border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border-subtle);transition:all .35s;cursor:pointer}
+        .style-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-hover);border-color:var(--accent)}
+        .style-card.selected{border-color:var(--accent);box-shadow:0 0 0 3px rgba(200,149,108,.2)}
+        .style-img{height:240px;overflow:hidden;position:relative}
+        .style-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+        .style-card:hover .style-img img{transform:scale(1.08)}
+        .style-check{position:absolute;top:1rem;right:1rem;width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.85rem;opacity:0;transform:scale(.6);transition:all .3s}
+        .style-card.selected .style-check{opacity:1;transform:scale(1)}
+        .style-body{padding:1.35rem}
+        .style-name{font-size:1.1rem;margin-bottom:.35rem}
+        .style-desc{font-size:.82rem;color:var(--text-muted);line-height:1.6;margin-bottom:1rem}
+        .style-price-from{font-family:'Outfit',sans-serif;font-weight:800;color:var(--accent);font-size:.95rem}
+        /* Flavor Picker */
+        .flavor-section{padding:4.5rem 0;background:var(--bg-main)}
+        .flavor-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2rem}
+        @media(max-width:900px){.flavor-grid{grid-template-columns:repeat(2,1fr)}}
+        @media(max-width:480px){.flavor-grid{grid-template-columns:1fr}}
+        .flavor-chip{background:var(--bg-card);border:1.5px solid var(--border-subtle);border-radius:14px;padding:1.15rem 1rem;cursor:pointer;transition:all .25s;text-align:center}
+        .flavor-chip:hover{border-color:var(--accent)}
+        .flavor-chip.selected{background:var(--accent-subtle);border-color:var(--accent);color:var(--accent)}
+        .flavor-chip i{font-size:1.35rem;color:var(--accent);margin-bottom:.5rem;display:block}
+        .flavor-chip strong{display:block;font-size:.9rem;margin-bottom:.15rem}
+        .flavor-chip span{font-size:.72rem;color:var(--text-muted)}
+        /* Cake Builder Preview */
+        .builder-section{padding:4.5rem 0;background:var(--bg-alt)}
+        .builder-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+        @media(max-width:900px){.builder-grid{grid-template-columns:1fr;gap:2rem}}
+        .builder-preview{background:var(--bg-card);border:1.5px solid var(--border-subtle);border-radius:var(--radius-xl);padding:2.5rem;position:sticky;top:100px}
+        @media(max-width:640px){.builder-preview{padding:1.5rem 1.15rem;position:static}}
+        .preview-cake{width:200px;height:200px;margin:0 auto 1.5rem;border-radius:50%;background:linear-gradient(135deg,var(--accent-subtle),var(--bg-alt));border:3px solid var(--accent);display:flex;align-items:center;justify-content:center;font-size:4rem;color:var(--accent);position:relative;box-shadow:0 15px 40px -10px rgba(200,149,108,.3)}
+        .preview-cake::after{content:'';position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);width:80%;height:6px;background:var(--accent);border-radius:3px;opacity:.3}
+        .preview-summary{text-align:center}
+        .preview-summary h3{font-size:1.35rem;margin-bottom:.5rem}
+        .preview-summary .summary-detail{font-size:.88rem;color:var(--text-muted);margin-bottom:.35rem}
+        .preview-price{font-family:'Outfit',sans-serif;font-weight:900;font-size:2.25rem;color:var(--accent);margin:1rem 0;letter-spacing:-.02em}
+        .builder-form{display:flex;flex-direction:column;gap:1.25rem}
+        .form-group{display:flex;flex-direction:column;gap:.5rem}
+        .form-label{font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--text-main)}
+        .form-input,.form-select,.form-textarea{width:100%;padding:.8rem 1.1rem;border-radius:12px;border:1.5px solid var(--border-subtle);background:var(--bg-card);color:var(--text-main);font-family:'Plus Jakarta Sans',sans-serif;font-size:.92rem;outline:none;transition:border .2s}
+        .form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--accent)}
+        .form-textarea{resize:vertical;min-height:100px}
+        .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+        @media(max-width:520px){.form-row{grid-template-columns:1fr}}
+        .size-options{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem}
+        @media(max-width:520px){.size-options{grid-template-columns:repeat(2,1fr)}}
+        .size-opt{padding:.75rem .5rem;border:1.5px solid var(--border-subtle);border-radius:12px;background:var(--bg-card);cursor:pointer;text-align:center;transition:all .2s;font-family:'Plus Jakarta Sans',sans-serif}
+        .size-opt:hover{border-color:var(--accent)}
+        .size-opt.selected{background:var(--accent);color:#fff;border-color:var(--accent)}
+        .size-opt strong{display:block;font-size:.85rem;margin-bottom:.1rem}
+        .size-opt span{font-size:.7rem;opacity:.7}
+        /* Gallery Showcase */
+        .showcase-section{padding:4.5rem 0;background:var(--bg-main)}
+        .showcase-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2rem}
+        @media(max-width:900px){.showcase-grid{grid-template-columns:repeat(2,1fr)}}
+        @media(max-width:480px){.showcase-grid{grid-template-columns:1fr}}
+        .showcase-item{aspect-ratio:1;border-radius:var(--radius-lg);overflow:hidden;position:relative;cursor:pointer}
+        .showcase-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+        .showcase-item:hover img{transform:scale(1.1)}
+        .showcase-item::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(44,24,16,.7));opacity:0;transition:opacity .3s}
+        .showcase-item:hover::after{opacity:1}
+        .showcase-caption{position:absolute;bottom:1rem;left:1rem;right:1rem;color:#fff;font-size:.85rem;font-weight:700;z-index:1;opacity:0;transform:translateY(10px);transition:all .3s}
+        .showcase-item:hover .showcase-caption{opacity:1;transform:translateY(0)}
+        /* FAQ */
+        .faq-section{padding:4.5rem 0;background:var(--bg-alt)}
+        .faq-list{max-width:800px;margin:2rem auto 0;display:flex;flex-direction:column;gap:.85rem}
+        .faq-item{background:var(--bg-card);border:1.5px solid var(--border-subtle);border-radius:var(--radius-lg);overflow:hidden;transition:all .3s}
+        .faq-item:hover{border-color:var(--accent)}
+        .faq-header{display:flex;align-items:center;justify-content:space-between;padding:1.15rem 1.35rem;cursor:pointer;gap:1rem}
+        .faq-header strong{font-size:.95rem;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif}
+        .faq-icon{color:var(--accent);font-size:.85rem;transition:transform .3s;flex-shrink:0}
+        .faq-item.open .faq-icon{transform:rotate(180deg)}
+        .faq-body{max-height:0;overflow:hidden;transition:max-height .4s}
+        .faq-item.open .faq-body{max-height:300px}
+        .faq-body-inner{padding:0 1.35rem 1.35rem;font-size:.9rem;color:var(--text-muted);line-height:1.7}
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar-container">
+    <div class="container navbar-flex">
+        <a href="index.html" class="logo">
+            <div class="logo-badge"><i class="fas fa-bread-slice"></i></div>
+            <div class="logo-text-block">
+                <span class="logo-title">FLOUR<span>HOUSE</span></span>
+                <span class="logo-sub">ARTISAN BAKERY & PASTRY</span>
+            </div>
+        </a>
+        <nav class="desktop-nav">
+            <div class="home-dropdown" id="home-dropdown">
+                <button class="home-pill-btn" onclick="toggleDropdown()">Home <i class="fas fa-chevron-up" id="dropdown-chevron" style="font-size:.75rem"></i></button>
+                <div class="dropdown-menu" id="dropdown-menu">
+                    <a href="index.html" class="dropdown-item">Home 1</a>
+                    <a href="home2.html" class="dropdown-item">Home 2</a>
+                </div>
+            </div>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="product.html" class="nav-link">Products</a>
+            <a href="custom.html" class="nav-link active">Custom Orders</a>
+            <a href="pricing.html" class="nav-link">Pricing</a>
+            <a href="gallery.html" class="nav-link">Gallery</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+        <div class="navbar-right">
+            <button class="circle-btn" id="theme-btn"><i class="fas fa-moon" id="theme-icon"></i></button>
+            <button class="circle-btn" id="rtl-btn"><i class="fas fa-exchange-alt"></i></button>
+            <a href="contact.html" class="visit-store-btn"><i class="fas fa-map-marker-alt"></i> Visit Bakery</a>
+        </div>
+        <button class="mobile-toggle" id="open-drawer"><i class="fas fa-bars"></i></button>
+    </div>
+</header>
+<div class="mobile-backdrop" id="mobile-backdrop"></div>
+<div class="mobile-drawer" id="mobile-drawer">
+    <div class="mobile-menu-header">
+        <div class="logo"><div class="logo-badge"><i class="fas fa-bread-slice"></i></div><div class="logo-text-block"><span class="logo-title">FLOUR<span>HOUSE</span></span><span class="logo-sub">BAKERY & PASTRY</span></div></div>
+        <button id="close-drawer" style="background:none;border:none;font-size:1.5rem;color:var(--text-main);cursor:pointer"><i class="fas fa-times"></i></button>
+    </div>
+    <div style="background:var(--accent-subtle);border:1.5px solid var(--accent);padding:.85rem;border-radius:14px;margin-bottom:1.5rem">
+        <span style="font-size:.75rem;font-weight:800;color:var(--accent);text-transform:uppercase;display:block;margin-bottom:.5rem">Select Homepage:</span>
+        <div style="display:flex;gap:.5rem">
+            <a href="index.html" style="flex:1;text-align:center;background:var(--bg-card);color:var(--text-main);border:1px solid var(--border-subtle);padding:.5rem;border-radius:8px;font-weight:700;font-size:.85rem">Home 1</a>
+            <a href="home2.html" style="flex:1;text-align:center;background:var(--bg-card);color:var(--text-main);border:1px solid var(--border-subtle);padding:.5rem;border-radius:8px;font-weight:700;font-size:.85rem">Home 2</a>
+        </div>
+    </div>
+    <ul class="mobile-links">
+        <li><a href="about.html" class="mobile-link-item" onclick="closeDrawer()">About</a></li>
+        <li><a href="product.html" class="mobile-link-item" onclick="closeDrawer()">Products</a></li>
+        <li><a href="custom.html" class="mobile-link-item active" onclick="closeDrawer()">Custom Orders</a></li>
+        <li><a href="pricing.html" class="mobile-link-item" onclick="closeDrawer()">Pricing</a></li>
+        <li><a href="gallery.html" class="mobile-link-item" onclick="closeDrawer()">Gallery</a></li>
+        <li><a href="contact.html" class="mobile-link-item" onclick="closeDrawer()">Contact</a></li>
+    </ul>
+    <div style="display:flex;flex-direction:column;gap:.75rem;border-top:1px solid var(--border-subtle);padding-top:1.5rem">
+        <button onclick="toggleTheme()" class="btn-secondary" style="width:100%;justify-content:center"><i class="fas fa-adjust"></i> Dark / Light Mode</button>
+        <button onclick="toggleDirection()" class="btn-secondary" style="width:100%;justify-content:center"><i class="fas fa-exchange-alt"></i> Toggle RTL</button>
+        <a href="contact.html" class="visit-store-btn" onclick="closeDrawer()" style="width:100%;justify-content:center"><i class="fas fa-map-marker-alt"></i> Visit Bakery</a>
+    </div>
+</div>
+
+<!-- HERO -->
+<section class="custom-hero">
+    <div class="container">
+        <span class="eyebrow"><i class="fas fa-cake-candles"></i> Bespoke Cake Studio</span>
+        <h1>Cakes Designed for <em>Your Moment</em></h1>
+        <p>From intimate milestone dinners to multi-tiered wedding centerpieces — our pastry chefs hand-sculpt every cake to your exact flavor and aesthetic vision.</p>
+    </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section">
+    <div class="container">
+        <div class="section-head-center">
+            <span class="eyebrow"><i class="fas fa-route"></i> How It Works</span>
+            <h2 class="section-title-main">From Vision to Celebration</h2>
+            <p class="section-desc-main">Four simple steps from first consultation to your cake pickup.</p>
+        </div>
+        <div class="process-grid">
+            <div class="process-card">
+                <div class="process-num">1</div>
+                <h3>Share Your Vision</h3>
+                <p>Tell us the occasion, flavors, guest count, and any design inspiration you have.</p>
+            </div>
+            <div class="process-card">
+                <div class="process-num">2</div>
+                <h3>Design & Quote</h3>
+                <p>We sketch your cake, suggest flavors, and send a detailed quote within 24 hours.</p>
+            </div>
+            <div class="process-card">
+                <div class="process-num">3</div>
+                <h3>Confirm & Deposit</h3>
+                <p>Lock in your date with a 50% deposit. We handle everything from there.</p>
+            </div>
+            <div class="process-card">
+                <div class="process-num">4</div>
+                <h3>Pickup or Delivery</h3>
+                <p>Collect your cake fresh on the day, or arrange white-glove delivery.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CAKE STYLES -->
+<section class="styles-section">
+    <div class="container">
+        <div class="section-head-center">
+            <span class="eyebrow"><i class="fas fa-palette"></i> Design Styles</span>
+            <h2 class="section-title-main">Choose Your Cake Style</h2>
+            <p class="section-desc-main">Click any style to start building your custom cake below.</p>
+        </div>
+        <div class="styles-grid">
+            <div class="style-card" data-style="minimalist" onclick="selectStyle(this,'Minimalist')">
+                <div class="style-img">
+                    <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?q=80&w=600&auto=format&fit=crop" alt="Minimalist cake">
+                    <div class="style-check"><i class="fas fa-check"></i></div>
+                </div>
+                <div class="style-body">
+                    <h3 class="style-name">Minimalist Modern</h3>
+                    <p class="style-desc">Clean lines, smooth buttercream, and subtle textures. Perfect for contemporary weddings.</p>
+                    <div class="style-price-from">From $85</div>
+                </div>
+            </div>
+            <div class="style-card" data-style="floral" onclick="selectStyle(this,'Floral')">
+                <div class="style-img">
+                    <img src="https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?q=80&w=600&auto=format&fit=crop" alt="Floral cake">
+                    <div class="style-check"><i class="fas fa-check"></i></div>
+                </div>
+                <div class="style-body">
+                    <h3 class="style-name">Botanical Floral</h3>
+                    <p class="style-desc">Fresh or sugar florals cascading over tiers, with hand-painted leaf details.</p>
+                    <div class="style-price-from">From $120</div>
+                </div>
+            </div>
+            <div class="style-card" data-style="vintage" onclick="selectStyle(this,'Vintage')">
+                <div class="style-img">
+                    <img src="https://images.unsplash.com/photo-1495147466023-ac5c588e2e94?q=80&w=600&auto=format&fit=crop" alt="Vintage cake">
+                    <div class="style-check"><i class="fas fa-check"></i></div>
+                </div>
+                <div class="style-body">
+                    <h3 class="style-name">Vintage Romance</h3>
+                    <p class="style-desc">Piped borders, lambeth detailing, and soft pastel palette. Timeless and elegant.</p>
+                    <div class="style-price-from">From $140</div>
+                </div>
+            </div>
+            <div class="style-card" data-style="sculpted" onclick="selectStyle(this,'Sculpted')">
+                <div class="style-img">
+                    <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?q=80&w=600&auto=format&fit=crop" alt="Sculpted cake">
+                    <div class="style-check"><i class="fas fa-check"></i></div>
+                </div>
+                <div class="style-body">
+                    <h3 class="style-name">Sculpted Art</h3>
+                    <p class="style-desc">3D sculpted cakes — from handbags to animals to architectural masterpieces.</p>
+                    <div class="style-price-from">From $220</div>
+                </div>
+            </div>
+            <div class="style-card" data-style="naked" onclick="selectStyle(this,'Naked')">
+                <div class="style-img">
+                    <img src="https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?q=80&w=600&auto=format&fit=crop" alt="Naked cake">
+                    <div class="style-check"><i class="fas fa-check"></i></div>
+                </div>
+                <div class="style-body">
+                    <h3 class="style-name">Rustic Naked</h3>
+                    <p class="style-desc">Semi-exposed sponge with fresh berries and edible flowers. Relaxed and natural.</p>
+                    <div class="style-price-from">From $95</div>
+                </div>
+            </div>
+            <div class="style-card" data-style="tiered" onclick="selectStyle(this,'Tiered')">
+                <div class="style-img">
+                    <img src="https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?q=80&w=600&auto=format&fit=crop" alt="Tiered cake">
+                    <div class="style-check"><i class="fas fa-check"></i></div>
+                </div>
+                <div class="style-body">
+                    <h3 class="style-name">Grand Tiered</h3>
+                    <p class="style-desc">Multi-tiered showstoppers for weddings and milestone celebrations.</p>
+                    <div class="style-price-from">From $180</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FLAVOR PICKER -->
+<section class="flavor-section">
+    <div class="container">
+        <div class="section-head-center">
+            <span class="eyebrow"><i class="fas fa-ice-cream"></i> Flavor Selection</span>
+            <h2 class="section-title-main">Pick Your Base Flavor</h2>
+            <p class="section-desc-main">Every cake is layered with premium ingredients and house-made fillings.</p>
+        </div>
+        <div class="flavor-grid">
+            <div class="flavor-chip" data-flavor="Valrhona Chocolate" onclick="selectFlavor(this,'Valrhona Chocolate')">
+                <i class="fas fa-cookie-bite"></i>
+                <strong>Valrhona Chocolate</strong>
+                <span>70% Ganache</span>
+            </div>
+            <div class="flavor-chip" data-flavor="Vanilla Bean" onclick="selectFlavor(this,'Vanilla Bean')">
+                <i class="fas fa-seedling"></i>
+                <strong>Vanilla Bean</strong>
+                <span>Madagascar</span>
+            </div>
+            <div class="flavor-chip" data-flavor="Pistachio Rose" onclick="selectFlavor(this,'Pistachio Rose')">
+                <i class="fas fa-heart"></i>
+                <strong>Pistachio Rose</strong>
+                <span>Bronte & Rosewater</span>
+            </div>
+            <div class="flavor-chip" data-flavor="Lemon Olive Oil" onclick="selectFlavor(this,'Lemon Olive Oil')">
+                <i class="fas fa-lemon"></i>
+                <strong>Lemon Olive Oil</strong>
+                <span>Sicilian Lemon</span>
+            </div>
+            <div class="flavor-chip" data-flavor="Red Velvet" onclick="selectFlavor(this,'Red Velvet')">
+                <i class="fas fa-heart-broken"></i>
+                <strong>Red Velvet</strong>
+                <span>Cream Cheese</span>
+            </div>
+            <div class="flavor-chip" data-flavor="Carrot Walnut" onclick="selectFlavor(this,'Carrot Walnut')">
+                <i class="fas fa-carrot"></i>
+                <strong>Carrot Walnut</strong>
+                <span>Spiced & Toasted</span>
+            </div>
+            <div class="flavor-chip" data-flavor="Raspberry Almond" onclick="selectFlavor(this,'Raspberry Almond')">
+                <i class="fas fa-apple-alt"></i>
+                <strong>Raspberry Almond</strong>
+                <span>Fresh Berry</span>
+            </div>
+            <div class="flavor-chip" data-flavor="Earl Grey Lavender" onclick="selectFlavor(this,'Earl Grey Lavender')">
+                <i class="fas fa-leaf"></i>
+                <strong>Earl Grey Lavender</strong>
+                <span>Bergamot & Honey</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CAKE BUILDER -->
+<section class="builder-section">
+    <div class="container">
+        <div class="section-head-center">
+            <span class="eyebrow"><i class="fas fa-magic"></i> Cake Builder</span>
+            <h2 class="section-title-main">Build Your Custom Cake</h2>
+            <p class="section-desc-main">Choose your style, flavor, size, and occasion. We'll send a quote within 24 hours.</p>
+        </div>
+        <div class="builder-grid">
+            <!-- Preview -->
+            <div class="builder-preview">
+                <div class="preview-cake"><i class="fas fa-cake-candles"></i></div>
+                <div class="preview-summary">
+                    <h3>Your Custom Cake</h3>
+                    <div class="summary-detail" id="preview-style">Style: Not selected</div>
+                    <div class="summary-detail" id="preview-flavor">Flavor: Not selected</div>
+                    <div class="summary-detail" id="preview-size">Size: Not selected</div>
+                    <div class="preview-price" id="preview-price">$0</div>
+                    <a href="#builder-form" class="btn-primary" style="width:100%;justify-content:center">
+                        <span>Request This Cake</span>
+                        <div class="btn-icon-capsule"><i class="fas fa-arrow-right"></i></div>
+                    </a>
+                </div>
+            </div>
+            <!-- Form -->
+            <form class="builder-form" id="builder-form" onsubmit="submitCustomOrder(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Your Name *</label>
+                        <input type="text" class="form-input" placeholder="Jane Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email *</label>
+                        <input type="email" class="form-input" placeholder="jane@email.com" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Phone</label>
+                        <input type="tel" class="form-input" placeholder="(555) 000-0000">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Event Date *</label>
+                        <input type="date" class="form-input" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Cake Size (Servings) *</label>
+                    <div class="size-options">
+                        <button type="button" class="size-opt" data-size="Small (8–10 servings)" data-price="85" onclick="selectSize(this)"><strong>Small</strong><span>8–10</span></button>
+                        <button type="button" class="size-opt" data-size="Medium (15–20 servings)" data-price="140" onclick="selectSize(this)"><strong>Medium</strong><span>15–20</span></button>
+                        <button type="button" class="size-opt" data-size="Large (30–40 servings)" data-price="240" onclick="selectSize(this)"><strong>Large</strong><span>30–40</span></button>
+                        <button type="button" class="size-opt" data-size="Tiered (60+ servings)" data-price="380" onclick="selectSize(this)"><strong>Tiered</strong><span>60+</span></button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Occasion</label>
+                    <select class="form-input form-select">
+                        <option value="" disabled selected>Select an occasion</option>
+                        <option>Wedding</option>
+                        <option>Engagement</option>
+                        <option>Birthday</option>
+                        <option>Anniversary</option>
+                        <option>Baby Shower</option>
+                        <option>Corporate Event</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Design Details & Inspiration</label>
+                    <textarea class="form-textarea" placeholder="Describe your vision — colors, theme, dietary requirements, any reference images you'd like us to consider..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary" style="justify-content:center;width:100%">
+                    <span>Submit Cake Request</span>
+                    <div class="btn-icon-capsule"><i class="fas fa-paper-plane"></i></div>
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- SHOWCASE -->
+<section class="showcase-section">
+    <div class="container">
+        <div class="section-head-center">
+            <span class="eyebrow"><i class="fas fa-images"></i> Recent Creations</span>
+            <h2 class="section-title-main">Cakes We've Loved Making</h2>
+            <p class="section-desc-main">A small selection of recent custom cakes from our studio.</p>
+        </div>
+        <div class="showcase-grid">
+            <div class="showcase-item"><img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?q=80&w=600&auto=format&fit=crop" alt="Custom cake 1"><div class="showcase-caption">Botanical Wedding · 3-Tier</div></div>
+            <div class="showcase-item"><img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?q=80&w=600&auto=format&fit=crop" alt="Custom cake 2"><div class="showcase-caption">Pistachio Rose · 40th Birthday</div></div>
+            <div class="showcase-item"><img src="https://images.unsplash.com/photo-1527515862127-a4fc05baf7a5?q=80&w=600&auto=format&fit=crop" alt="Custom cake 3"><div class="showcase-caption">Lemon Olive Oil · Bridal Shower</div></div>
+            <div class="showcase-item"><img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?q=80&w=600&auto=format&fit=crop" alt="Custom cake 4"><div class="showcase-caption">Valrhona Dark · Anniversary</div></div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+    <div class="container">
+        <div class="section-head-center">
+            <span class="eyebrow"><i class="fas fa-question-circle"></i> Common Questions</span>
+            <h2 class="section-title-main">Custom Cake FAQs</h2>
+            <p class="section-desc-main">Everything you need to know before placing a custom order.</p>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item" onclick="this.classList.toggle('open')">
+                <div class="faq-header"><strong>How far in advance should I order?</strong><i class="fas fa-chevron-down faq-icon"></i></div>
+                <div class="faq-body"><div class="faq-body-inner">For custom celebration cakes we recommend 2–3 weeks notice. For wedding cakes and large tiered orders, please book 6–8 weeks in advance. We do occasionally accommodate rush orders — just ask.</div></div>
+            </div>
+            <div class="faq-item" onclick="this.classList.toggle('open')">
+                <div class="faq-header"><strong>Do you accommodate dietary restrictions?</strong><i class="fas fa-chevron-down faq-icon"></i></div>
+                <div class="faq-body"><div class="faq-body-inner">Yes. We offer gluten-free, vegan, nut-free, and refined-sugar-free options. Please note that our kitchen handles wheat, nuts, and dairy, so we cannot guarantee zero cross-contamination.</div></div>
+            </div>
+            <div class="faq-item" onclick="this.classList.toggle('open')">
+                <div class="faq-header"><strong>What's the deposit and cancellation policy?</strong><i class="fas fa-chevron-down faq-icon"></i></div>
+                <div class="faq-body"><div class="faq-body-inner">A 50% non-refundable deposit secures your date. The balance is due 7 days before pickup. Cancellations made 14+ days before the event can be rescheduled once at no extra charge.</div></div>
+            </div>
+            <div class="faq-item" onclick="this.classList.toggle('open')">
+                <div class="faq-header"><strong>Do you offer delivery?</strong><i class="fas fa-chevron-down faq-icon"></i></div>
+                <div class="faq-body"><div class="faq-body-inner">Yes. Free pickup from our bakery, or white-glove delivery within 15 miles ($35–$75 depending on distance). Tiered cakes and wedding cakes require delivery by our team.</div></div>
+            </div>
+            <div class="faq-item" onclick="this.classList.toggle('open')">
+                <div class="faq-header"><strong>Can I taste the cake before ordering?</strong><i class="fas fa-chevron-down faq-icon"></i></div>
+                <div class="faq-body"><div class="faq-body-inner">Absolutely. We offer tasting boxes ($25) with 6 flavors for wedding cake bookings. The cost is credited toward your final order if you book with us.</div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <a href="index.html" class="logo" style="margin-bottom:1rem;display:inline-flex">
+                    <div class="logo-badge"><i class="fas fa-bread-slice"></i></div>
+                    <div class="logo-text-block"><span class="logo-title">FLOUR<span>HOUSE</span></span><span class="logo-sub">ARTISAN BAKERY & PASTRY</span></div>
+                </a>
+                <p style="color:var(--text-muted);font-size:.95rem;line-height:1.7;max-width:320px">Handcrafted sourdoughs, French viennoiserie, and celebration cakes baked fresh at dawn every single morning.</p>
+            </div>
+            <div>
+                <h4>Quick Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home 1 (Artisan Hearth)</a></li>
+                    <li><a href="home2.html">Home 2 (Parisian Atelier)</a></li>
+                    <li><a href="about.html">About Our Craft</a></li>
+                    <li><a href="product.html">Daily Bakes Menu</a></li>
+                    <li><a href="gallery.html">Photo Gallery</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Specialties</h4>
+                <ul>
+                    <li><a href="product.html">Artisan Breads & Pastries</a></li>
+                    <li><a href="custom.html" style="color:var(--accent);font-weight:700">Custom Celebration Cakes</a></li>
+                    <li><a href="pricing.html">Weekly Bread Club</a></li>
+                    <li><a href="contact.html">Store Hours & Location</a></li>
+                    <li><a href="contact.html">Inquiries & Bulk Orders</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Join Dawn Gazette</h4>
+                <p style="color:var(--text-muted);font-size:.9rem;margin-bottom:1rem">Receive weekend secret bake releases, seasonal tarts, and sourdough recipe tips.</p>
+                <form onsubmit="handleGazetteSubmit(event)" style="display:flex;gap:.5rem">
+                    <input type="email" placeholder="Your email address" class="form-input" required>
+                    <button type="submit" class="btn-primary" style="padding:.6rem 1rem"><i class="fas fa-arrow-right"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-copyright">© 2026 FLOURHOUSE Artisan Bakery & Pastry Shop. All rights reserved. Handcrafted with passion.</div>
+    </div>
+</footer>
+
+<div class="toast-msg" id="toast-msg">
+    <i class="fas fa-check-circle" style="color:var(--accent);font-size:1.25rem"></i>
+    <span id="toast-text">Welcome!</span>
+</div>
+
+<script>
+    // State
+    let selectedStyle=null,selectedFlavor=null,selectedSize=null,selectedPrice=0;
+
+    function toggleDropdown(){const dd=document.getElementById('home-dropdown');const ch=document.getElementById('dropdown-chevron');dd.classList.toggle('active');if(ch)ch.className=dd.classList.contains('active')?'fas fa-chevron-down':'fas fa-chevron-up';}
+    document.addEventListener('click',function(e){const dd=document.getElementById('home-dropdown');if(dd&&!dd.contains(e.target)){dd.classList.remove('active');const ch=document.getElementById('dropdown-chevron');if(ch)ch.className='fas fa-chevron-up';}});
+    const drawer=document.getElementById('mobile-drawer'),backdrop=document.getElementById('mobile-backdrop');
+    if(document.getElementById('open-drawer'))document.getElementById('open-drawer').onclick=()=>{drawer.classList.add('active');backdrop.classList.add('active');};
+    if(document.getElementById('close-drawer'))document.getElementById('close-drawer').onclick=()=>{drawer.classList.remove('active');backdrop.classList.remove('active');};
+    if(backdrop)backdrop.onclick=()=>{drawer.classList.remove('active');backdrop.classList.remove('active');};
+    function closeDrawer(){if(drawer)drawer.classList.remove('active');if(backdrop)backdrop.classList.remove('active');}
+    function toggleTheme(){const h=document.documentElement;const n=(h.getAttribute('data-theme')||'light')==='dark'?'light':'dark';h.setAttribute('data-theme',n);localStorage.setItem('fh_theme',n);updateThemeIcon(n);showToast('Switched to '+n.toUpperCase()+' mode');}
+    function updateThemeIcon(t){const i=document.getElementById('theme-icon');if(i)i.className=t==='dark'?'fas fa-sun':'fas fa-moon';}
+    function toggleDirection(){const h=document.documentElement;const n=(h.getAttribute('dir')||'ltr')==='rtl'?'ltr':'rtl';h.setAttribute('dir',n);localStorage.setItem('fh_dir',n);showToast('Direction set to '+n.toUpperCase());}
+    (function(){const t=localStorage.getItem('fh_theme');if(t){document.documentElement.setAttribute('data-theme',t);updateThemeIcon(t);}const d=localStorage.getItem('fh_dir');if(d)document.documentElement.setAttribute('dir',d);})();
+    function showToast(m){const t=document.getElementById('toast-msg'),x=document.getElementById('toast-text');if(x)x.textContent=m;if(t){t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3200);}}
+    function handleGazetteSubmit(e){e.preventDefault();showToast('Welcome to the Dawn Gazette!');e.target.reset();}
+    document.getElementById('theme-btn').onclick=toggleTheme;
+    document.getElementById('rtl-btn').onclick=toggleDirection;
+
+    // Style selection
+    function selectStyle(el,name){
+        document.querySelectorAll('.style-card').forEach(c=>c.classList.remove('selected'));
+        el.classList.add('selected');
+        selectedStyle=name;
+        document.getElementById('preview-style').textContent='Style: '+name;
+        updatePreviewPrice();
+    }
+
+    // Flavor selection
+    function selectFlavor(el,name){
+        document.querySelectorAll('.flavor-chip').forEach(c=>c.classList.remove('selected'));
+        el.classList.add('selected');
+        selectedFlavor=name;
+        document.getElementById('preview-flavor').textContent='Flavor: '+name;
+    }
+
+    // Size selection
+    function selectSize(el){
+        document.querySelectorAll('.size-opt').forEach(c=>c.classList.remove('selected'));
+        el.classList.add('selected');
+        selectedSize=el.getAttribute('data-size');
+        selectedPrice=parseInt(el.getAttribute('data-price'));
+        document.getElementById('preview-size').textContent='Size: '+selectedSize.split(' ')[0];
+        updatePreviewPrice();
+    }
+
+    function updatePreviewPrice(){
+        let price=selectedPrice;
+        if(selectedStyle==='Minimalist')price+=0;
+        else if(selectedStyle==='Floral')price+=40;
+        else if(selectedStyle==='Vintage')price+=60;
+        else if(selectedStyle==='Sculpted')price+=150;
+        else if(selectedStyle==='Naked')price+=20;
+        else if(selectedStyle==='Tiered')price+=100;
+        document.getElementById('preview-price').textContent='$'+price;
+    }
+
+    // Submit
+    function submitCustomOrder(e){
+        e.preventDefault();
+        if(!selectedStyle||!selectedFlavor||!selectedSize){
+            showToast('Please select a style, flavor, and size.');
+            return;
+        }
+        const btn=e.target.querySelector('button[type="submit"]');
+        const orig=btn.innerHTML;
+        btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Sending...';
+        btn.disabled=true;
+        setTimeout(()=>{
+            btn.innerHTML='<i class="fas fa-check"></i> Request Sent!';
+            btn.style.background='linear-gradient(135deg,#22c55e,#16a34a)';
+            showToast('Thank you! We\'ll email your quote within 24 hours.');
+            setTimeout(()=>{
+                btn.innerHTML=orig;btn.style.background='';btn.disabled=false;
+                e.target.reset();
+                document.querySelectorAll('.style-card,.flavor-chip,.size-opt').forEach(el=>el.classList.remove('selected'));
+                selectedStyle=selectedFlavor=selectedSize=null;selectedPrice=0;
+                document.getElementById('preview-style').textContent='Style: Not selected';
+                document.getElementById('preview-flavor').textContent='Flavor: Not selected';
+                document.getElementById('preview-size').textContent='Size: Not selected';
+                document.getElementById('preview-price').textContent='$0';
+            },2500);
+        },1500);
+    }
+</script>
+
+</body>
+</html>
