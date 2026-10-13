@@ -89,7 +89,7 @@
 
 html {
     scroll-behavior: smooth;
-    overflow-x: hidden;
+    overflow-x: clip;
     width: 100%;
     max-width: 100%;
 }
@@ -102,7 +102,7 @@ body {
     transition: background-color 0.35s ease, color 0.35s ease;
     width: 100%;
     max-width: 100%;
-    overflow-x: hidden;
+    overflow-x: clip;
     position: relative;
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -200,13 +200,18 @@ a {
    ========================================================================== */
 .navbar-container {
     background-color: var(--nav-bg);
-    border-bottom: 3px solid var(--accent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 2px solid var(--accent);
+    position: -webkit-sticky;
     position: sticky;
     top: 0;
+    left: 0;
+    right: 0;
     width: 100%;
     z-index: 1000;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .navbar-container .container {
